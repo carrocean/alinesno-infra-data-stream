@@ -1,5 +1,7 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.BaseEntity;
+
 /**
  * 批处理作业
  * 
@@ -16,7 +18,7 @@ package com.alinesno.infra.data.flink.entity;
  * @author luoxiaodong
  * @version 1.0.0
  */
-public class BatchJob {
+public class BatchJobEntity extends BaseEntity {
     private String id;
 
     /**
@@ -29,10 +31,10 @@ public class BatchJob {
      */
     private String cron;
 
-    public BatchJob() {
+    public BatchJobEntity() {
     }
 
-    public BatchJob(String id, String jobName, String cron) {
+    public BatchJobEntity(String id, String jobName, String cron) {
         this.id = id;
         this.jobName = jobName;
         this.cron = cron;
