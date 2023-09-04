@@ -19,7 +19,7 @@ import com.alinesno.infra.common.facade.mapper.entity.BaseEntity;
  * @version 1.0.0
  */
 public class BatchJobEntity extends BaseEntity {
-    private String id;
+    private Long id;
 
     /**
      * 任务名称
@@ -34,7 +34,7 @@ public class BatchJobEntity extends BaseEntity {
     public BatchJobEntity() {
     }
 
-    public BatchJobEntity(String id, String jobName, String cron) {
+    public BatchJobEntity(Long id, String jobName, String cron) {
         this.id = id;
         this.jobName = jobName;
         this.cron = cron;
@@ -45,7 +45,7 @@ public class BatchJobEntity extends BaseEntity {
      *
      * @return 任务ID
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -54,7 +54,7 @@ public class BatchJobEntity extends BaseEntity {
      *
      * @param id 任务ID
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
