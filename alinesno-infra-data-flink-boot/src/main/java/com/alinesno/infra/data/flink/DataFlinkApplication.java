@@ -1,5 +1,6 @@
 package com.alinesno.infra.data.flink;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -9,7 +10,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author LuoAnDong
  * @since 2023年8月3日 上午6:23:43
  */
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@MapperScan("com.alinesno.infra.data.flink.mapper")
+@SpringBootApplication
 public class DataFlinkApplication {
 
 	public static void main(String[] args) {
