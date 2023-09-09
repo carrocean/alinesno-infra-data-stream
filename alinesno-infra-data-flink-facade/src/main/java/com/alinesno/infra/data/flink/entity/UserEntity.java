@@ -4,11 +4,9 @@ import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import java.time.LocalDateTime;
-
 /**
- * 功能名：IP状态
- * 数据表：ip_status
+ * 功能名：用户
+ * 数据表：user
  * 表备注：
  *
  * @TableName 表名注解，用于指定数据库表名
@@ -18,18 +16,22 @@ import java.time.LocalDateTime;
  * @version 1.0.0
  */
 
-@TableName("ip_status")
-public class IpStatusEntity extends InfraBaseEntity {
+@TableName("user")
+public class UserEntity extends InfraBaseEntity {
 
-    // ip
-    @TableField("ip")
-    private String ip;
+    // 用户帐号
+    @TableField("username")
+    private String username;
 
-    // 1:运行 -1:停止
+    // 用户姓名
+    @TableField("name")
+    private String name;
+
+    // 密码
+    @TableField("password")
+    private String password;
+
+    // 1:启用 0: 停用
     @TableField("status")
     private Integer status;
-
-    // 最后心跳时间
-    @TableField("last_time")
-    private LocalDateTime lastTime;
 }
