@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alinesno.infra.data.flink.mapper.JobConfigHistoryMapper">
+
+    <resultMap type="com.alinesno.infra.data.flink.entity.JobConfigHistoryEntity" id="JobConfigHistoryResult">
+                    <result property="jobConfigId" column="job_config_id"/>
+                    <result property="jobName" column="job_name"/>
+                    <result property="jobDesc" column="job_desc"/>
+                    <result property="deployMode" column="deploy_mode"/>
+                    <result property="flinkRunConfig" column="flink_run_config"/>
+                    <result property="flinkSql" column="flink_sql"/>
+                    <result property="flinkCheckpointConfig" column="flink_checkpoint_config"/>
+                    <result property="extJarPath" column="ext_jar_path"/>
+                    <result property="version" column="version"/>
+                    <result property="cron" column="cron"/>
+                    <result property="jobType" column="job_type"/>
+    </resultMap>
+
+    <select id="selectByJobConfigId" resultType="com.alinesno.infra.data.flink.entity.JobConfigHistoryEntity">
+        select
+          *
+        from job_config_history
+        where job_config_id = #{jobConfigId}
+        order by add_time desc
+    </select>
+
+    <update id="deleteByJobConfigId">
+      delete  from job_config_history
+      where job_config_id = #{jobConfigId}
+    </update>
+
+</mapper>

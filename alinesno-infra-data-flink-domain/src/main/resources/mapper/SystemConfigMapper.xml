@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alinesno.infra.data.flink.mapper.SystemConfigMapper">
+
+    <resultMap type="com.alinesno.infra.data.flink.entity.SystemConfigEntity" id="SystemConfigResult">
+                    <result property="sysKey" column="sys_key"/>
+                    <result property="sysVal" column="sys_val"/>
+                    <result property="sysType" column="sys_type"/>
+    </resultMap>
+
+    <select id="selectAllConfig" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+        select
+          *
+        from system_config
+        where has_delete = 0
+        <if test="operatorId != null and operatorId != '' ">
+            <![CDATA[
+	              and operator_id= #{operatorId}
+			 ]]>
+        </if>
+        <if test="sysType != null and sysType != '' ">
+            <![CDATA[
+	              and sys_type= #{sysType,jdbcType=VARCHAR}
+			 ]]>
+        </if>
+    </select>
+
+
+    <select id="selectConfigByKey" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+        select
+          *
+        from system_config
+        where  has_delete = 0
+        <if test="operatorId != null and operatorId != '' ">
+            <![CDATA[
+	              and operator_id= #{operatorId}
+			 ]]>
+        </if>
+          and sys_key= #{sysKey,jdbcType=VARCHAR}
+    </select>
+
+
+    <update id="updateByKey" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+        update system_config
+        <set>
+            <if test="sysVal != null">
+                sys_val = #{sysVal,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where has_delete=0 and `sys_key`= #{sysKey,jdbcType=VARCHAR}
+        <if test="operatorId != null and operatorId != '' ">
+            <![CDATA[
+	              and operator_id= #{operatorId}
+			 ]]>
+        </if>
+    </update>
+
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alinesno.infra.data</groupId>
+        <artifactId>alinesno-infra-data-flink-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.alinesno.infra.data</groupId>
+    <artifactId>alinesno-infra-data-flink-validation</artifactId>
+    <version>${revision}</version>
+
+    <properties>
+        <file_encoding>UTF-8</file_encoding>
+        <flink_streaming_version>1.5.0.RELEASE</flink_streaming_version>
+        <flink.version>1.15.3</flink.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <jib.maven.plugin.version>3.3.0</jib.maven.plugin.version>
+        <docker.base.images>registry.cn-shenzhen.aliyuncs.com/alinesno-cloud-base/openjdk:11.0.16-jdk-slim</docker.base.images>
+        <docker.repository>registry.cn-shenzhen.aliyuncs.com</docker.repository>
+        <docker.registry.name>alinesno-cloud</docker.registry.name>
+        <docker.user>alinesno</docker.user>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alinesno.infra.data</groupId>
+            <artifactId>alinesno-infra-data-flink-common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>flink-table-api-scala_2.11</artifactId>
+                    <groupId>org.apache.flink</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jsr305</artifactId>
+                    <groupId>com.google.code.findbugs</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+</project>

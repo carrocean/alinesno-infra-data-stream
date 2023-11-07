@@ -1,0 +1,26 @@
+1、新增SQL任务
+
+Request URL:    http://localhost:30204/api/infra/data/flink/jobConfig/addConfig
+Request Method: POST
+body:
+记录1：
+{"id":"","jobName":"xiaoSQL_20230917","jobDesc":"xiaoSQL测试20230917","deployMode":"LOCAL","flinkRunConfig":"-p 2  -Dtaskmanager.numberOfTaskSlots=2 -Dyarn.application.queue=default","flinkCheckpointConfig":"-checkpointDir hdfs:///flink/checkpoint/","flinkSql":"SELECT * from DUAL","jobType":0,"cron":"","alarmTypes":"1","extJarPath":"","creator":"","operatorId":""}
+记录1：
+{"id":"","jobName":"xiaoSQL_2023091701","jobDesc":"xiaoSQL测试20230917","deployMode":"LOCAL","flinkRunConfig":"-p 2  -Dtaskmanager.numberOfTaskSlots=2 -Dyarn.application.queue=default","flinkCheckpointConfig":"-checkpointDir hdfs:///flink/checkpoint/","flinkSql":"SELECT * from DUAL","jobType":0,"cron":"","alarmTypes":"1","extJarPath":"http://localhost:30204/api/infra/data/flink/systemConfig/datatables","creator":"","operatorId":""}
+
+2、修改SQL任务
+
+Request URL:    http://localhost:30204/api/infra/data/flink/jobConfig/editConfig
+Request Method: POST
+body:
+记录1：
+{"id":"1703220275239231489","jobName":"xiaoSQL_20230917","jobDesc":"xiaoSQL测试20230917","deployMode":"LOCAL","flinkRunConfig":"-p 2  -Dtaskmanager.numberOfTaskSlots=2 -Dyarn.application.queue=default","flinkCheckpointConfig":"-checkpointDir hdfs:///flink/checkpoint/","flinkSql":"SELECT * from DUAL","jobType":0,"cron":"","alarmTypes":"1","extJarPath":"","creator":"","operatorId":""}
+记录1：
+{"id":"1703221823642050561","jobName":"xiaoSQL_2023091701","jobDesc":"xiaoSQL测试20230917","deployMode":"LOCAL","flinkRunConfig":"-p 2  -Dtaskmanager.numberOfTaskSlots=2 -Dyarn.application.queue=default","flinkCheckpointConfig":"-checkpointDir hdfs:///flink/checkpoint/","flinkSql":"SELECT * from DUAL","jobType":0,"cron":"","alarmTypes":"1","extJarPath":"http://localhost:30204/api/infra/data/flink/systemConfig/datatables","creator":"","operatorId":""}
+
+
+
+3、系统配置
+
+Request URL:    http://localhost:30204/api/infra/data/flink/systemConfig/datatables?pageNum=1&pageSize=10
+Request Method: POST

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alinesno.infra.data.flink.mapper.JobConfigMapper">
+
+    <resultMap type="com.alinesno.infra.data.flink.entity.JobConfigEntity" id="JobConfigResult">
+                    <result property="jobName" column="job_name"/>
+                    <result property="jobDesc" column="job_desc"/>
+                    <result property="deployMode" column="deploy_mode"/>
+                    <result property="flinkRunConfig" column="flink_run_config"/>
+                    <result property="flinkSql" column="flink_sql"/>
+                    <result property="flinkCheckpointConfig" column="flink_checkpoint_config"/>
+                    <result property="jobId" column="job_id"/>
+                    <result property="isOpen" column="is_open"/>
+                    <result property="status" column="status"/>
+                    <result property="cron" column="cron"/>
+                    <result property="extJarPath" column="ext_jar_path"/>
+                    <result property="lastStartTime" column="last_start_time"/>
+                    <result property="lastRunLogId" column="last_run_log_id"/>
+                    <result property="version" column="version"/>
+                    <result property="jobType" column="job_type"/>
+                    <result property="customArgs" column="custom_args"/>
+                    <result property="customMainClass" column="custom_main_class"/>
+                    <result property="customJarUrl" column="custom_jar_url"/>
+    </resultMap>
+
+    <select id="selectCountByJobName" resultType="java.lang.Integer">
+        select
+        count(job_name)
+        from job_config
+        where job_name = #{jobName,jdbcType=VARCHAR}
+        <if test="id != null ">
+            <![CDATA[
+	               and id != #{id}
+			 ]]>
+        </if>
+<!--        <if test="operatorId != null ">-->
+<!--            <![CDATA[-->
+<!--	               and operator_id = #{operatorId}-->
+<!--			 ]]>-->
+<!--        </if>-->
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+        select
+          *
+        from job_config
+        where id = #{id}
+          and has_delete=0
+    </select>
+
+    <select id="selectByPrimaryKeyContainDelete" parameterType="java.lang.String" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+        select
+          *
+        from job_config
+        where id = #{id}
+    </select>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+        update job_config
+        <set>
+            version = version + 1,
+
+            <if test="jobName != null">
+                job_name = #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobDesc != null">
+                job_desc = #{jobDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="deployMode != null">
+                deploy_mode = #{deployMode,jdbcType=VARCHAR},
+            </if>
+            <if test="flinkRunConfig != null">
+                flink_run_config = #{flinkRunConfig,jdbcType=VARCHAR},
+            </if>
+            <if test="flinkCheckpointConfig != null">
+                flink_checkpoint_config = #{flinkCheckpointConfig,jdbcType=VARCHAR},
+            </if>
+            <if test="jobId != null">
+                job_id = #{jobId,jdbcType=VARCHAR},
+            </if>
+            <if test="isOpen != null">
+                is_open = #{isOpen,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+
+            <if test="extJarPath != null">
+                ext_jar_path = #{extJarPath,jdbcType=VARCHAR},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="customArgs != null">
+                custom_args = #{customArgs,jdbcType=VARCHAR},
+            </if>
+            <if test="customMainClass != null">
+                custom_main_class = #{customMainClass,jdbcType=VARCHAR},
+            </if>
+            <if test="customJarUrl != null">
+                custom_jar_url = #{customJarUrl,jdbcType=VARCHAR},
+            </if>
+
+            <if test="hasDelete != null">
+                has_delete = #{hasDelete,jdbcType=BIT},
+            </if>
+
+            <if test="lastUpdateOperatorId != null">
+                last_update_operator_id = #{lastUpdateOperatorId},
+            </if>
+
+            <if test="cron != null">
+                cron = #{cron,jdbcType=VARCHAR},
+            </if>
+            <if test="flinkSql != null">
+                flink_sql = #{flinkSql,jdbcType=LONGVARCHAR},
+            </if>
+
+            <if test="lastRunLogId != null">
+                last_run_log_id = #{lastRunLogId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+          and has_delete=0
+    </update>
+
+
+    <update id="updateStatusByStart">
+        update job_config
+        <set>
+            version = version + 1,
+            last_update_operator_id = #{operatorId},
+            status = #{status,jdbcType=BIT},
+            last_run_log_id = #{jobRunLogId,jdbcType=VARCHAR}
+        </set>
+        where id = #{id}
+          and has_delete=0
+          and version=#{oldVersion,jdbcType=INTEGER}
+    </update>
+
+    <select id="findJobConfig" parameterType="com.alinesno.infra.data.flink.exchange.param.JobConfigParam"
+            resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+        select
+           *
+        from job_config
+        where has_delete=0
+        <if test="jobName != null and jobName != ''">
+            <![CDATA[
+	               and job_name like CONCAT('%',#{jobName,jdbcType=VARCHAR},'%')
+			 ]]>
+        </if>
+
+
+        <if test="status != null ">
+            <![CDATA[
+	               and status = #{status,jdbcType=BIT}
+			 ]]>
+        </if>
+
+        <if test="jobType != null ">
+            <![CDATA[
+	               and job_type = #{jobType,jdbcType=BIT}
+			 ]]>
+        </if>
+
+        <if test="open != null ">
+            <![CDATA[
+	               and is_open = #{open,jdbcType=BIT}
+			 ]]>
+        </if>
+
+        <if test="jobId != null and jobId != '' ">
+            <![CDATA[
+	               and job_id = #{jobId,jdbcType=VARCHAR}
+			 ]]>
+        </if>
+
+        <if test="deployMode != null and deployMode != '' ">
+            <![CDATA[
+	               deploy_mode = #{deployMode,jdbcType=VARCHAR},
+			 ]]>
+        </if>
+
+        order by create_time desc
+
+    </select>
+
+    <update id="deleteById">
+        delete from job_config
+        where id = #{id}
+    </update>
+
+    <update id="recoveryDeleteJobConfigById">
+        update job_config
+        set has_delete=0,
+            last_update_operator_id=#{userName}
+        where id = #{id,jdbcType=VARCHAR}
+          and has_delete = 1
+   </update>
+
+
+    <select id="findJobConfigByStatus" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+        select
+          *
+        from job_config
+        where has_delete=0 and status in
+        <foreach collection="statusList" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        <if test="operatorId != null ">
+            <![CDATA[
+	               and operator_id = #{operatorId}
+			 ]]>
+        </if>
+    </select>
+
+    <select id="getAllBatchJobs" resultType="com.alinesno.infra.data.flink.entity.BatchJob">
+    select id, job_name, cron
+    from job_config
+    where is_open = 1
+      and has_delete = 0
+      and job_type = 2 and  cron is  not null  and  cron !=''
+      <if test="operatorId != null ">
+        <![CDATA[
+               and operator_id = #{operatorId}
+         ]]>
+      </if>
+  </select>
+
+    <select id="jobTypeCnt" resultType="com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount">
+        SELECT
+            a.jobType,
+            a.jobTypeName,
+            IFNULL(b.runNum,0)  as runNum
+        FROM
+        ( SELECT 0 AS jobType, "SQL流任务" AS jobTypeName UNION SELECT 1 AS jobType, "JAR包" AS jobTypeName UNION SELECT 2 AS jobType, "SQL批任务" AS jobTypeName ) a
+        LEFT JOIN
+        (  SELECT job_type AS jobType, COUNT(*) runNum FROM job_config
+            WHERE has_delete = 0
+            <if test="operatorId != null ">
+                <![CDATA[
+                       and operator_id = #{operatorId}
+                 ]]>
+            </if>
+                  GROUP BY job_type
+        ) b ON a.jobType = b.jobType
+    </select>
+
+    <select id="JobStatusStat" resultType="com.alinesno.infra.data.flink.exchange.vo.JobStatusStatVO">
+        select
+              a.status
+             ,a.statusLabel
+             ,IFNULL(b.statusCnt,0) as statusCnt
+        from
+        (
+            select 1 as status ,"运行中" as statusLabel
+            UNION
+            select 0 as status ,"运行结束" as statusLabel
+            UNION
+            select -1 as status ,"运行异常" as statusLabel
+            UNION
+            select 3 as status ,"提交成功" as statusLabel
+            UNION
+            select -2 as status ,"提交异常" as statusLabel
+        ) a left join (
+            select
+              case when status in (1,2) then 1 else status end status
+             ,count(*) statusCnt
+            from job_config
+            WHERE has_delete = 0
+            <if test = "operatorId != null " >
+                AND operator_id = #{operatorId}
+            </if>
+            group by
+              case when status in (1,2) then 1 else status end
+        ) b on a.status = b.status
+    </select>
+
+</mapper>

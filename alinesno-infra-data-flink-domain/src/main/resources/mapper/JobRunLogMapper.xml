@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alinesno.infra.data.flink.mapper.JobRunLogMapper">
+
+    <resultMap type="com.alinesno.infra.data.flink.entity.JobRunLogEntity" id="JobRunLogResult">
+                    <result property="jobConfigId" column="job_config_id"/>
+                    <result property="jobName" column="job_name"/>
+                    <result property="jobDesc" column="job_desc"/>
+                    <result property="deployMode" column="deploy_mode"/>
+                    <result property="jobId" column="job_id"/>
+                    <result property="localLog" column="local_log"/>
+                    <result property="runIp" column="run_ip"/>
+                    <result property="remoteLogUrl" column="remote_log_url"/>
+                    <result property="startTime" column="start_time"/>
+                    <result property="endTime" column="end_time"/>
+                    <result property="jobStatus" column="job_status"/>
+    </resultMap>
+
+    <update id="update" parameterType="com.alinesno.infra.data.flink.entity.JobRunLogEntity">
+        update job_run_log
+        <set>
+            <if test="remoteLogUrl != null">
+                remote_log_url = #{remoteLogUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jobStatus != null">
+                job_status = #{jobStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="jobId != null">
+                job_id = #{jobId,jdbcType=VARCHAR},
+            </if>
+
+            <if test="localLog != null">
+                local_log = #{localLog,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+   <update id="deleteByJobConfigId">
+     delete  from job_run_log
+     where job_config_id = #{jobConfigId}
+  </update>
+
+    <select id="jobTypeRunCnt" resultType="com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount">
+        select
+              job_type jobType
+             ,case when job_type = 0 then "SQL流任务"
+                   when job_type = 1 then "JAR包"
+                   when job_type = 2 then "SQL批任务"
+              end jobTypeName
+             ,runNum
+         from
+         (
+            SELECT
+                b.job_type,
+                COUNT(*) runNum
+            FROM
+                job_run_log a
+                LEFT JOIN job_config b ON a.job_config_id = b.id
+            WHERE
+                1 = 1
+                <if test="operatorId != null ">
+                    <![CDATA[
+                           and a.operator_id = #{operatorId}
+                           and b.operator_id = #{operatorId}
+                     ]]>
+                </if>
+            GROUP BY
+                b.job_type
+        ) a
+    </select>
+
+    <select id="JobRunStatDay" resultType="com.alinesno.infra.data.flink.exchange.vo.JobRunStatDayVO">
+        select
+             a.curDay
+            ,ifnull(b.jobTotalCount,0)     jobTotalCount
+            ,ifnull(b.runSuccessCount,0)   runSuccessCount
+            ,ifnull(b.runFailCount,0)      runFailCount
+            ,ifnull(b.otherStatusCount,0)  otherStatusCount
+        from (
+                select date_add(curdate(), interval(cast(id as signed) - 29) day) as curDay
+                from mq_serial_num
+                order by id
+        )  as a left join
+        (
+          select
+              date_format(add_time,"%Y-%m-%d")   as curDay
+             ,count(*)   as jobTotalCount
+             ,sum( case when job_status = "SUCCESS" then 1 else 0 end ) as runSuccessCount
+             ,sum( case when job_status = "FAIL" then 1 else 0 end) as runFailCount
+             ,sum( case when job_status != "SUCCESS" and job_status != "FAIL" then 1 else 0 end) as otherStatusCount
+          from job_run_log
+          where DATE_FORMAT( add_time, '%Y-%m-%d' ) > DATE_SUB( CURDATE(), INTERVAL 30 DAY )
+          <if test="operatorId!=null ">
+             and operator_id = #{operatorId}
+          </if>
+           group by
+              date_format(add_time,"%Y-%m-%d")
+        ) as b  on a.curDay = b.curDay
+        where 1=1 order by a.curDay
+    </select>
+
+    <select id="JobRunStat" resultType="com.alinesno.infra.data.flink.exchange.vo.JobRunStatVO">
+        select
+             date_format(now(),"%Y-%m-%d")   as curDay
+            ,b.job_type
+            ,count(*)                                                   as jobTotalCount
+            ,sum( case when job_status = "SUCCESS" then 1 else 0 end )  as runSuccessCount
+            ,sum( case when job_status = "FAIL" then 1 else 0 end)      as runFailCount
+            ,sum( case when job_status != "SUCCESS"  then 1 else 0 end) as otherStatusCount
+        from job_run_log a
+        left join job_config b on a.job_config_id = b.id
+        where a.job_status != "RUN"
+         and  a.job_status != "STARTING"
+        <if test="operatorId!=null ">
+           and a.operator_id = #{operatorId} and b.operator_id = #{operatorId}
+        </if>
+        group by
+            date_format(now(),"%Y-%m-%d")
+            ,b.job_type
+    </select>
+
+</mapper>

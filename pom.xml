@@ -25,9 +25,12 @@
         <module>alinesno-infra-data-flink-facade</module>  <!-- 接口和引用 -->
         <module>alinesno-infra-data-flink-domain</module>  <!-- 领域服务 -->
         <module>alinesno-infra-data-flink-adapter</module> <!-- 适配层 -->
-        <module>alinesno-infra-data-flink-api</module>  <!-- 接口服务 -->
+        <module>alinesno-infra-data-flink-api</module>     <!-- 接口服务 -->
         <module>alinesno-infra-data-flink-client</module>  <!-- 对外引用 -->
-        <module>alinesno-infra-data-flink-boot</module>  <!-- 启动服务 -->
+        <module>alinesno-infra-data-flink-boot</module>    <!-- 启动服务 -->
+        <module>alinesno-infra-data-flink-common</module>         <!-- 公共服务 -->
+        <module>alinesno-infra-data-flink-validation</module>     <!-- 验证服务 -->
+        <module>alinesno-infra-data-flink-core</module>  <!-- 核心模块 -->
 
         <!-- 前端服务
         <module>alinesno-infra-data-flink-admin</module>
