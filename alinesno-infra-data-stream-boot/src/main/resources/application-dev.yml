@@ -1,0 +1,36 @@
+server:
+  port: 30204
+
+# spring 配置
+spring:
+  application:
+    name: alinesno-infra-data-stream-boot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dev_alinesno_infra_data_flink_v100?serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: adminer
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: aip@local
+  devtools:
+    restart:
+      enabled: true
+
+mybatis-plus:
+  check-config-location: false
+
+# sa-token配置
+sa-token:
+  token-name: satoken
+  host-path: http://alinesno-infra-base-identity-auth-application.beta.base.infra.linesno.com
+  sso:
+    auth-url: ${sa-token.host-path}/login
+    is-http: true
+    check-ticket-url: ${sa-token.host-path}/sso/checkTicket
+    slo-url: ${sa-token.host-path}/sso/signout
+    get-data-url: ${sa-token.host-path}/sso/getData
+  sign:
+    secret-key:

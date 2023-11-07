@@ -19,7 +19,7 @@
         <!-- config-agent_start -->
         <dependency>
             <groupId>com.alinesno.infra.data</groupId>
-            <artifactId>alinesno-infra-data-flink-agent</artifactId>
+            <artifactId>alinesno-infra-data-stream-agent</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
