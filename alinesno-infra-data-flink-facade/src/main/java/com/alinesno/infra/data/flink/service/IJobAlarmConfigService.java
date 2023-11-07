@@ -1,9 +1,9 @@
 package com.alinesno.infra.data.flink.service;
 
 import com.alinesno.infra.common.facade.services.IBaseService;
+import com.alinesno.infra.data.flink.entity.JobAlarmConfigEntity;
 import com.alinesno.infra.data.flink.exchange.common.ResponseBean;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmTypeEnum;
-import com.alinesno.infra.data.flink.entity.JobAlarmConfigEntity;
 
 import java.util.List;
 import java.util.Map;

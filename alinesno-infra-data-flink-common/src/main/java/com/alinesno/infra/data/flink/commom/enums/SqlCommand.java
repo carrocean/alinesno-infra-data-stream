@@ -1,6 +1,7 @@
 package com.alinesno.infra.data.flink.commom.enums;
 
 import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
+
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.regex.Pattern;

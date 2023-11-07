@@ -1,6 +1,6 @@
 package com.alinesno.infra.data.flink.commom.model;
 
-import com.alinesno.infra.data.flink.commom.enums.StateBackendEnum ;
+import com.alinesno.infra.data.flink.commom.enums.StateBackendEnum;
 
 /**
  * @author zhp

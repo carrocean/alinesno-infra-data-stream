@@ -2,7 +2,6 @@ package com.alinesno.infra.common.web.adapter.login.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.web.adapter.dto.LoginBodyDto;
@@ -12,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class CommonLoginController {
@@ -132,18 +134,16 @@ public class CommonLoginController {
     {
 
         Menu dashboardMenu = new Menu("Dashboard", "/dashboard", false, "noRedirect", "Layout", true, new Menu.Meta("仪盘表", "dashboard", false, null), List.of(
-                new Menu("Dashboard", "index", false, false , "dashboard", new Menu.Meta("概览", "dashboard", false, null)),
-                new Menu("Starter", "build-project/business", false, false , "build-project/business", new Menu.Meta("工程脚架", "druid", false, null))
+                new Menu("Dashboard", "index", false, false , "dashboard", new Menu.Meta("概览", "dashboard", false, null))
         ));
 
-        Menu flinkMenu = new Menu("Flink", "/flink", false, "noRedirect", "Layout", true, new Menu.Meta("flink管理", "system", false, null), List.of(
+        Menu flinkMenu = new Menu("Flink", "/flink", false, "noRedirect", "Layout", true, new Menu.Meta("实时计算", "monitor", false, null), List.of(
+                new Menu("Application", "flink/application/list", false, false , "flink/application/list/:context?", new Menu.Meta("应用管理", "peoples", false, null)),
                 new Menu("JobManage", "flink/jobManage/list", false, false , "flink/jobManage/list/:context?", new Menu.Meta("任务列表", "peoples", false, null)),
-                new Menu("JobHistory", "flink/jobHistory/list", false, false , "flink/jobHistory/list/:flag?/:context?/:jobConfigId?", new Menu.Meta("任务历史版本", "peoples", false, null)),
                 new Menu("JobRunLog", "flink/jobRunLog/list", false, false , "flink/jobRunLog/list", new Menu.Meta("任务日志", "peoples", false, null)),
                 new Menu("AlarmLog", "flink/alarmLog/list", false, false , "flink/alarmLog/list", new Menu.Meta("告警日志", "peoples", false, null)),
-                new Menu("JarFile", "flink/jarFile/list", false, false , "flink/jarFile/list", new Menu.Meta("二方库", "peoples", false, null)),
                 new Menu("SavepointBackup", "flink/savepointBackup/list", false, false , "flink/savepointBackup/list", new Menu.Meta("保存点", "peoples", false, null)),
-                new Menu("SystemConfig", "flink/systemConfig/list", false, false , "flink/systemConfig/list", new Menu.Meta("系统配置", "peoples", false, null)),
+                new Menu("JobHistory", "flink/jobHistory/list", false, false , "flink/jobHistory/list/:flag?/:context?/:jobConfigId?", new Menu.Meta("任务历史", "peoples", false, null)),
 
                 new Menu("CreateSqlStreamingTask", "flink/jobManage/sqltask", true, false , "flink/jobManage/sqltask/:flag?/:context?/:data?", new Menu.Meta("创建SQL流任务", "peoples", false, null)),
                 new Menu("UpdateSqlStreamingTask", "flink/jobManage/sqltask", true, false , "flink/jobManage/sqltask/:flag?/:context?/:data?", new Menu.Meta("编辑SQL流任务", "peoples", false, null)),
@@ -152,13 +152,14 @@ public class CommonLoginController {
                 new Menu("CreateJarTask", "flink/jobManage/jartask", true, false , "flink/jobManage/jartask/:flag?/:context?/:data?", new Menu.Meta("创建JAR任务", "peoples", false, null)),
                 new Menu("UpdateJarTask", "flink/jobManage/jartask", true, false , "flink/jobManage/jartask/:flag?/:context?/:data?", new Menu.Meta("编辑JAR批任务", "peoples", false, null)),
                 new Menu("ViewJarTask", "flink/jobManage/jartask", true, false , "flink/jobManage/jartask/:flag?/:context?/:data?", new Menu.Meta("查看JAR批任务", "peoples", false, null))
-
-
-
         ));
 
+        Menu systemMenu = new Menu("System", "/system", false, "noRedirect", "Layout", true, new Menu.Meta("系统配置", "system", false, null), List.of(
+                new Menu("JarFile", "flink/jarFile/list", false, false , "flink/jarFile/list", new Menu.Meta("二方库", "peoples", false, null)),
+                new Menu("SystemConfig", "flink/systemConfig/list", false, false , "flink/systemConfig/list", new Menu.Meta("系统配置", "peoples", false, null))
+        ));
 
-        List<Menu> menus = List.of(dashboardMenu, flinkMenu ) ;
+        List<Menu> menus = List.of(dashboardMenu, flinkMenu , systemMenu ) ;
         String jsonString = JSON.toJSONString(menus, SerializerFeature.WriteMapNullValue);
 
         return AjaxResult.success(JSONArray.parseArray(jsonString)) ;

@@ -4,6 +4,7 @@ package com.alinesno.infra.data.flink.exchange.vo;
 import com.alinesno.infra.data.flink.exchange.dto.SystemConfigDTO;
 import com.alinesno.infra.data.flink.exchange.enums.SysConfigEnum;
 import org.springframework.util.CollectionUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -2,7 +2,6 @@ package com.alinesno.infra.data.flink.core.logs;
 
 import com.alinesno.infra.data.flink.commom.enums.SqlCommand;
 import com.alinesno.infra.data.flink.commom.model.SqlCommandCall;
-import com.alinesno.infra.data.flink.core.execute.ExecuteSql;
 import org.apache.flink.table.api.TableEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

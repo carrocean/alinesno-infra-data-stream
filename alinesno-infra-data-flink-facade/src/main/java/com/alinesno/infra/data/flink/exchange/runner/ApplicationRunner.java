@@ -1,5 +1,6 @@
 package com.alinesno.infra.data.flink.exchange.runner;
 
+import com.alinesno.infra.data.flink.service.IIpStatusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import com.alinesno.infra.data.flink.service.IIpStatusService;
 
 /**
  * @author zhp

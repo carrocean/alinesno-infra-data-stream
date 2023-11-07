@@ -1,12 +1,12 @@
 package com.alinesno.infra.data.flink.service;
 
 import com.alinesno.infra.common.facade.services.IBaseService;
+import com.alinesno.infra.data.flink.entity.BatchJob;
+import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.exchange.common.ResponseBean;
 import com.alinesno.infra.data.flink.exchange.dto.JobConfigDTO;
 import com.alinesno.infra.data.flink.exchange.enums.JobConfigStatus;
 import com.alinesno.infra.data.flink.exchange.enums.YN;
-import com.alinesno.infra.data.flink.entity.BatchJob;
-import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.exchange.vo.JobStatusStatVO;
 import com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount;
 

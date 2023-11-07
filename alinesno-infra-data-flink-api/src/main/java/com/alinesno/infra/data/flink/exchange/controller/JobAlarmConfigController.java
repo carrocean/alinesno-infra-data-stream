@@ -1,9 +1,9 @@
 package com.alinesno.infra.data.flink.exchange.controller;
 
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.flink.entity.JobAlarmConfigEntity;
 import com.alinesno.infra.data.flink.service.IJobAlarmConfigService;
 import io.swagger.annotations.Api;

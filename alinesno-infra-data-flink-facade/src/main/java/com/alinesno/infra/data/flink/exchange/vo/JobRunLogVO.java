@@ -5,6 +5,7 @@ import com.alinesno.infra.data.flink.exchange.dto.JobRunLogDTO;
 import com.alinesno.infra.data.flink.exchange.enums.JobStatusEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;

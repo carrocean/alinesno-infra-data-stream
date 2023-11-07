@@ -2,6 +2,7 @@ package com.alinesno.infra.data.flink.exchange.ao.impl;
 
 import cn.hutool.core.date.DateTime;
 import com.alibaba.fastjson.JSON;
+import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.exchange.alarm.DingDingAlarm;
 import com.alinesno.infra.data.flink.exchange.alarm.HttpAlarm;
 import com.alinesno.infra.data.flink.exchange.ao.AlarmServiceAO;
@@ -9,7 +10,6 @@ import com.alinesno.infra.data.flink.exchange.dto.AlartLogDTO;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmLogStatusEnum;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmLogTypeEnum;
 import com.alinesno.infra.data.flink.exchange.vo.CallbackDTO;
-import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.service.IAlartLogService;
 import com.alinesno.infra.data.flink.service.IJobConfigService;
 import org.slf4j.Logger;

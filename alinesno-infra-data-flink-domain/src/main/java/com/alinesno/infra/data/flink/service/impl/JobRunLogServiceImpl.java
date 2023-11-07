@@ -2,9 +2,10 @@ package com.alinesno.infra.data.flink.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.data.flink.exchange.dto.JobRunLogDTO;
 import com.alinesno.infra.data.flink.entity.JobRunLogEntity;
+import com.alinesno.infra.data.flink.exchange.dto.JobRunLogDTO;
 import com.alinesno.infra.data.flink.exchange.vo.JobRunStatDayVO;
+import com.alinesno.infra.data.flink.exchange.vo.JobRunStatVO;
 import com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount;
 import com.alinesno.infra.data.flink.mapper.JobRunLogMapper;
 import com.alinesno.infra.data.flink.service.IJobRunLogService;
@@ -12,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alinesno.infra.data.flink.exchange.vo.JobRunStatVO;
+
 import java.util.List;
 
 /**

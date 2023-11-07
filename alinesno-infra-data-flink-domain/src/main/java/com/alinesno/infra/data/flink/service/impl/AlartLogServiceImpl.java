@@ -1,8 +1,8 @@
 package com.alinesno.infra.data.flink.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.data.flink.exchange.dto.AlartLogDTO;
 import com.alinesno.infra.data.flink.entity.AlartLogEntity;
+import com.alinesno.infra.data.flink.exchange.dto.AlartLogDTO;
 import com.alinesno.infra.data.flink.mapper.AlartLogMapper;
 import com.alinesno.infra.data.flink.service.IAlartLogService;
 import org.slf4j.Logger;

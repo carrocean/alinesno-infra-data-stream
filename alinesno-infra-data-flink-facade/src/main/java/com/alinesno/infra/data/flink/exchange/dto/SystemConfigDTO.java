@@ -1,8 +1,9 @@
 package com.alinesno.infra.data.flink.exchange.dto;
 
-import com.alinesno.infra.data.flink.exchange.enums.SysConfigEnumType;
 import com.alinesno.infra.data.flink.entity.SystemConfigEntity;
+import com.alinesno.infra.data.flink.exchange.enums.SysConfigEnumType;
 import org.springframework.util.CollectionUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;

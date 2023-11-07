@@ -1,6 +1,8 @@
 package com.alinesno.infra.data.flink.exchange.ao.impl;
 
+import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.exchange.ao.AlarmServiceAO;
+import com.alinesno.infra.data.flink.exchange.ao.DingDingService;
 import com.alinesno.infra.data.flink.exchange.ao.JobServerAO;
 import com.alinesno.infra.data.flink.exchange.ao.TaskServiceAO;
 import com.alinesno.infra.data.flink.exchange.common.SystemConstants;
@@ -17,11 +19,9 @@ import com.alinesno.infra.data.flink.exchange.rpc.model.JobStandaloneInfo;
 import com.alinesno.infra.data.flink.exchange.thread.AlarmDingdingThread;
 import com.alinesno.infra.data.flink.exchange.thread.AlarmHttpThread;
 import com.alinesno.infra.data.flink.exchange.vo.CallbackDTO;
-import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.service.IJobAlarmConfigService;
 import com.alinesno.infra.data.flink.service.IJobConfigService;
 import com.alinesno.infra.data.flink.service.ISystemConfigService;
-import com.alinesno.infra.data.flink.exchange.ao.DingDingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

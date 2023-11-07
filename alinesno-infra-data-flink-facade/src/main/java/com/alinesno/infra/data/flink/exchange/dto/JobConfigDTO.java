@@ -1,12 +1,12 @@
 package com.alinesno.infra.data.flink.exchange.dto;
 
+import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
+import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
+import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.exchange.common.util.MatcherUtils;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmTypeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.DeployModeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.JobConfigStatus;
-import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
-import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
-import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;

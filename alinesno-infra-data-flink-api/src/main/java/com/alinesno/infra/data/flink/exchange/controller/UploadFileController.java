@@ -1,13 +1,14 @@
 package com.alinesno.infra.data.flink.exchange.controller;
 
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.flink.commom.enums.FileTypeEnum;
 import com.alinesno.infra.data.flink.entity.UploadFileEntity;
 import com.alinesno.infra.data.flink.exchange.config.CustomConfig;
+import com.alinesno.infra.data.flink.exchange.dto.UploadFileDTO;
 import com.alinesno.infra.data.flink.service.ISystemConfigService;
 import com.alinesno.infra.data.flink.service.IUploadFileService;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.alinesno.infra.data.flink.exchange.dto.UploadFileDTO;
+
 import java.io.File;
 import java.util.Date;
 import java.util.List;

@@ -1,13 +1,13 @@
 package com.alinesno.infra.data.flink.exchange.vo;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.alinesno.infra.data.flink.exchange.common.util.DateFormatUtils;
+import com.alinesno.infra.data.flink.exchange.dto.JobConfigHistoryDTO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.alinesno.infra.data.flink.exchange.common.util.DateFormatUtils;
-import com.alinesno.infra.data.flink.exchange.dto.JobConfigHistoryDTO;
 
 /**
  * @author zhp

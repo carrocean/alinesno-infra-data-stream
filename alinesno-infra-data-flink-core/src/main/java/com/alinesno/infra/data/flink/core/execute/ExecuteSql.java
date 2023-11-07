@@ -3,8 +3,6 @@ package com.alinesno.infra.data.flink.core.execute;
 import com.alinesno.infra.data.flink.commom.model.SqlCommandCall;
 import com.alinesno.infra.data.flink.core.config.Configurations;
 import com.alinesno.infra.data.flink.core.logs.LogPrint;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.flink.api.common.JobID;
 import org.apache.flink.table.api.StatementSet;
 import org.apache.flink.table.api.TableEnvironment;
@@ -17,6 +15,9 @@ import org.apache.flink.table.operations.SinkModifyOperation;
 import org.apache.flink.table.operations.command.SetOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhp

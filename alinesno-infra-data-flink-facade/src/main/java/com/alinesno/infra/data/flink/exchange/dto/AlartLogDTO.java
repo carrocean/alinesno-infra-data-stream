@@ -1,9 +1,10 @@
 package com.alinesno.infra.data.flink.exchange.dto;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.alinesno.infra.data.flink.entity.AlartLogEntity;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmLogStatusEnum;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmLogTypeEnum;
-import com.alinesno.infra.data.flink.entity.AlartLogEntity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;

@@ -2,10 +2,10 @@ package com.alinesno.infra.data.flink.exchange.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.flink.entity.JobRunLogEntity;
 import com.alinesno.infra.data.flink.exchange.config.CustomConfig;
 import com.alinesno.infra.data.flink.exchange.enums.YN;
@@ -13,10 +13,12 @@ import com.alinesno.infra.data.flink.exchange.utils.Constants;
 import com.alinesno.infra.data.flink.exchange.vo.JobRunLogVO;
 import com.alinesno.infra.data.flink.exchange.vo.JobRunStatVO;
 import com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount;
-import com.alinesno.infra.data.flink.service.*;
+import com.alinesno.infra.data.flink.service.IJobRunLogService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
+
 import java.util.List;
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Map;
 
 /**
  * 处理与JobRunLog相关的请求的Controller。

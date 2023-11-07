@@ -5,6 +5,7 @@ import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.entity.JobConfigEntity;
 import com.alinesno.infra.data.flink.entity.JobConfigHistoryEntity;
 import org.apache.commons.compress.utils.Lists;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;

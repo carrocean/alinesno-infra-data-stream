@@ -1,15 +1,16 @@
 package com.alinesno.infra.data.flink.exchange.param;
 
 
+import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
+import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.exchange.dto.JobConfigDTO;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmTypeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.DeployModeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.JobConfigStatus;
 import com.alinesno.infra.data.flink.exchange.enums.YN;
-import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
-import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 

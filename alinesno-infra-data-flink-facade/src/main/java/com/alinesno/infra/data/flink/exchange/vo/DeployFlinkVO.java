@@ -1,8 +1,8 @@
 package com.alinesno.infra.data.flink.exchange.vo;
 
+import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.AlarmTypeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.DeployModeEnum;
-import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 
 import java.util.List;
 

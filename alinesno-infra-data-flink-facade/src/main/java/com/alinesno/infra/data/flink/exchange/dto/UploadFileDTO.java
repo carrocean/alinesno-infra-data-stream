@@ -1,9 +1,10 @@
 package com.alinesno.infra.data.flink.exchange.dto;
 
-import com.alinesno.infra.data.flink.exchange.common.util.DateFormatUtils;
 import com.alinesno.infra.data.flink.entity.UploadFileEntity;
+import com.alinesno.infra.data.flink.exchange.common.util.DateFormatUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.compress.utils.Lists;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.alinesno.infra.data.flink.exchange.common.util;
 
+import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
 import com.alinesno.infra.data.flink.exchange.common.SystemConstants;
 import com.alinesno.infra.data.flink.exchange.dto.JobConfigDTO;
 import com.alinesno.infra.data.flink.exchange.dto.JobRunParamDTO;
 import com.alinesno.infra.data.flink.exchange.enums.DeployModeEnum;
-import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,11 +2,11 @@ package com.alinesno.infra.data.flink.exchange.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.facade.response.ResultCodeEnum;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
 import com.alinesno.infra.data.flink.commom.enums.JobTypeEnum;
 import com.alinesno.infra.data.flink.commom.model.CheckPointParam;
@@ -46,6 +46,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;

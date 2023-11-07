@@ -1,7 +1,7 @@
 package com.alinesno.infra.data.flink.exchange.config;
 
-import com.alinesno.infra.data.flink.exchange.common.util.IpUtil;
 import com.alinesno.infra.data.flink.commom.constant.SystemConstant;
+import com.alinesno.infra.data.flink.exchange.common.util.IpUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,11 +1,12 @@
 package com.alinesno.infra.data.flink.exchange.controller;
 
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.flink.entity.SystemConfigEntity;
+import com.alinesno.infra.data.flink.exchange.exceptions.BizException;
 import com.alinesno.infra.data.flink.service.ISystemConfigService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.alinesno.infra.data.flink.exchange.exceptions.BizException;
+
 import java.util.Map;
 
 /**

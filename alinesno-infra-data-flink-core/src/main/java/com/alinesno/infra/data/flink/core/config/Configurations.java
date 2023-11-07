@@ -1,7 +1,6 @@
 package com.alinesno.infra.data.flink.core.config;
 
 
-import com.alinesno.infra.data.flink.core.checkpoint.FsCheckPoint;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.table.api.TableEnvironment;

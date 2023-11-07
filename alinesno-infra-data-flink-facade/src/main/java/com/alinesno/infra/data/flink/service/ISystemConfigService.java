@@ -1,10 +1,11 @@
 package com.alinesno.infra.data.flink.service;
 
 import com.alinesno.infra.common.facade.services.IBaseService;
+import com.alinesno.infra.data.flink.entity.SystemConfigEntity;
 import com.alinesno.infra.data.flink.exchange.dto.SystemConfigDTO;
 import com.alinesno.infra.data.flink.exchange.enums.DeployModeEnum;
 import com.alinesno.infra.data.flink.exchange.enums.SysConfigEnumType;
-import com.alinesno.infra.data.flink.entity.SystemConfigEntity;
+
 import java.util.List;
 
 /**

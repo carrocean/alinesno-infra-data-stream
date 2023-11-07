@@ -1,9 +1,9 @@
 package com.alinesno.infra.data.flink.exchange.quartz;
 
 import com.alinesno.infra.common.facade.response.ResultCodeEnum;
+import com.alinesno.infra.data.flink.entity.BatchJob;
 import com.alinesno.infra.data.flink.exchange.common.ResponseBean;
 import com.alinesno.infra.data.flink.exchange.common.SystemConstants;
-import com.alinesno.infra.data.flink.entity.BatchJob;
 import com.alinesno.infra.data.flink.service.IJobConfigService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -7,6 +7,7 @@ import com.alinesno.infra.data.flink.exchange.enums.YN;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /**
