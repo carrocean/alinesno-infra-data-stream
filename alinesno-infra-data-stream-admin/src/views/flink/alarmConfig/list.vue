@@ -12,7 +12,7 @@
           v-model="queryParams.jobId"
           placeholder="请输入job_config主表id"
           clearable
-          size="small"
+          
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
@@ -21,7 +21,7 @@
           v-model="queryParams.type"
           placeholder="请输入类型 1:钉钉告警 2:url回调 3:异常自动拉起任务"
           clearable
-          size="small"
+          
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
@@ -30,13 +30,13 @@
           v-model="queryParams.version"
           placeholder="请输入更新版本号  "
           clearable
-          size="small"
+          
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -45,7 +45,7 @@
         <el-button
           type="primary"
           plain
-          icon="el-icon-plus"
+          icon="Plus"
           size="mini"
           @click="handleAdd"
         >新增</el-button>
@@ -54,7 +54,7 @@
         <el-button
           type="success"
           plain
-          icon="el-icon-edit"
+          icon="Edit"
           size="mini"
           :disabled="single"
           @click="handleUpdate"
@@ -64,7 +64,7 @@
         <el-button
           type="danger"
           plain
-          icon="el-icon-delete"
+          icon="Delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
@@ -108,13 +108,13 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
+            icon="Edit"
             @click="handleUpdate(scope.row)"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
+            icon="Delete"
             @click="handleDelete(scope.row)"
           >删除</el-button>
         </template>

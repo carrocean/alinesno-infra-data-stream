@@ -8,7 +8,7 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px" @submit.native.prevent>
       <el-form-item label="任务名称" prop="jobConfigId">
-        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务名称"  clearable size="small" filterable  @keyup.enter.native="handleQuery" style="width: 480px">
+        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务名称"  clearable  filterable  @keyup.enter.native="handleQuery" style="width: 480px">
           <el-option
             v-for="item in JobNameList"
             :key="item.id"
@@ -20,7 +20,7 @@
 <!--      <el-form-item label="备份时间" prop="backupTime">-->
 <!--        <el-date-picker-->
 <!--          clearable-->
-<!--          size="small"-->
+<!--          -->
 <!--          v-model="queryParams.backupTime"-->
 <!--          range="backupTime"-->
 <!--          type="date"-->
@@ -29,8 +29,8 @@
 <!--        </el-date-picker>-->
 <!--      </el-form-item>-->
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -39,7 +39,7 @@
 <!--        <el-button-->
 <!--          type="primary"-->
 <!--          plain-->
-<!--          icon="el-icon-plus"-->
+<!--          icon="Plus"-->
 <!--          size="mini"-->
 <!--          @click="handleAdd"-->
 <!--        >新增</el-button>-->
@@ -48,7 +48,7 @@
 <!--        <el-button-->
 <!--          type="success"-->
 <!--          plain-->
-<!--          icon="el-icon-edit"-->
+<!--          icon="Edit"-->
 <!--          size="mini"-->
 <!--          :disabled="single"-->
 <!--          @click="handleUpdate"-->
@@ -58,7 +58,7 @@
 <!--        <el-button-->
 <!--          type="danger"-->
 <!--          plain-->
-<!--          icon="el-icon-delete"-->
+<!--          icon="Delete"-->
 <!--          size="mini"-->
 <!--          :disabled="multiple"-->
 <!--          @click="handleDelete"-->
@@ -106,13 +106,13 @@
 <!--          <el-button-->
 <!--            size="mini"-->
 <!--            type="text"-->
-<!--            icon="el-icon-edit"-->
+<!--            icon="Edit"-->
 <!--            @click="handleUpdate(scope.row)"-->
 <!--          >修改</el-button>-->
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
+            icon="Delete"
             @click="handleDelete(scope.row)"
           >删除</el-button>
         </template>
@@ -137,7 +137,7 @@
           <el-input v-model="form.savepointPath" type="textarea" placeholder="请输入内容" />
         </el-form-item>
         <el-form-item label="备份时间" prop="backupTime">
-          <el-date-picker clearable size="small"
+          <el-date-picker clearable 
             v-model="form.backupTime"
             type="date"
             value-format="yyyy-MM-dd"

@@ -12,13 +12,13 @@
           v-model="queryParams.jobName"
           placeholder="请输入任务名称"
           clearable
-          size="small"
+          
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
 
       <el-form-item label="开启" prop="isOpen">
-        <el-select  v-model="queryParams.isOpen" placeholder="请选择开启"  clearable size="small" filterable  @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.isOpen" placeholder="请选择开启"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in isOpenOptions"
             :key="item.id"
@@ -29,7 +29,7 @@
       </el-form-item>
 
       <el-form-item label="任务类型" prop="jobType">
-        <el-select  v-model="queryParams.jobType" placeholder="请选择任务类型"  clearable size="small" filterable  @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.jobType" placeholder="请选择任务类型"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in jobTypeOptions"
             :key="item.id"
@@ -39,8 +39,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -49,7 +49,7 @@
         <el-button
             type="primary"
             plain
-            icon="el-icon-plus"
+            icon="Plus"
             size="mini"
             @click="handleSqlSteam"
         >SQL流任务</el-button>
@@ -59,7 +59,7 @@
 <!--          <el-button-->
 <!--            type="primary"-->
 <!--            plain-->
-<!--            icon="el-icon-plus"-->
+<!--            icon="Plus"-->
 <!--            size="mini"-->
 <!--          >SQL批任务</el-button>-->
 <!--        </router-link>-->
@@ -68,7 +68,7 @@
         <el-button
             type="primary"
             plain
-            icon="el-icon-plus"
+            icon="Plus"
             size="mini"
             @click="handleJAR"
         >JAR任务</el-button>
@@ -85,7 +85,7 @@
       </el-table-column>
       <el-table-column label="任务名称" align="left" prop="jobName" :show-overflow-tooltip="true" />
       <el-table-column label="运行模式"  :show-overflow-tooltip="true"  align="left" prop="deployModeEnum" width="160"/>
-      <el-table-column label="Flink任务Id"  :show-overflow-tooltip="true"  align="left" prop="jobId"  >
+      <el-table-column label="Flink任务"  :show-overflow-tooltip="true"  align="left" prop="jobId"  >
         <template  #default="scope">
           <el-link v-if="scope.row.jobId" :href="scope.row.flinkRunUrl" target="_blank" :underline="false">{{ scope.row.jobId }}</el-link>
         </template>
@@ -122,7 +122,7 @@
             <el-link :underline="false">
               <el-button
                 type="text"
-                icon="el-icon-message"
+                icon="Message"
                 size="mini">详情
               </el-button>
             </el-link>
@@ -190,7 +190,7 @@
             <el-link :underline="false">
               <el-button
                 type="text"
-                icon="el-icon-view"
+                icon="View"
                 size="mini">查看
               </el-button>
             </el-link>
@@ -217,7 +217,7 @@
           <el-link v-if="scope.row.isOpen===0"  @click.native="handleDelete(scope.row)" style="margin-right: 2px" :underline="false">
             <el-button
               type="text"
-              icon="el-icon-delete"
+              icon="Delete"
               size="mini">删除
             </el-button>
           </el-link>

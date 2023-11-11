@@ -15,10 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableInfraSsoApi
 @SpringBootApplication
 @MapperScan("com.alinesno.infra.data.flink.mapper")
-public class DataFlinkApplication {
+public class DataStreamApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DataFlinkApplication.class, args);
+		SpringApplication.run(DataStreamApplication.class, args);
 	}
 
 }

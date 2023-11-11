@@ -2,7 +2,7 @@
   <div v-loading="loading" class="fl-logdetail-container">
     <el-page-header @back="handleBack()"  :content=title  class="back"></el-page-header>
     <el-card shadow="false" class="box-card" style="margin-top: 20px;">
-    <el-form ref="form" :model="form" :disabled="false" label-width="70px" size="small" class="fl-log">
+    <el-form ref="form" :model="form" :disabled="false" label-width="70px"  class="fl-log">
       <el-row>
         <el-col :span="10">
           <el-form-item label="运行状态" prop="jobStatus">

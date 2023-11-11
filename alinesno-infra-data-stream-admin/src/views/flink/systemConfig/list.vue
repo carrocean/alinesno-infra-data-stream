@@ -11,7 +11,7 @@
         <el-button
           type="success"
           plain
-          icon="el-icon-edit"
+          icon="Edit"
           size="mini"
           :disabled="single"
           @click="handleUpdate"
@@ -43,7 +43,7 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
+            icon="Edit"
             @click="handleUpdate(scope.row)"
           >修改</el-button>
         </template>

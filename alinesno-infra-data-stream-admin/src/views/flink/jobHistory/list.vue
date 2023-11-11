@@ -9,7 +9,7 @@
     <el-page-header @back="handleBack()"  :content=linkTitle v-show="showLinkTitle"  class="back"></el-page-header>
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="任务" prop="jobConfigId">
-        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable size="small" filterable style="width: 480px" @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable  filterable style="width: 480px" @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in JobNameList"
             :key="item.id"
@@ -23,13 +23,13 @@
           v-model="queryParams.jobName"
           placeholder="请输入任务名称"
           clearable
-          size="small"
+          
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -38,7 +38,7 @@
 <!--        <el-button-->
 <!--          type="primary"-->
 <!--          plain-->
-<!--          icon="el-icon-plus"-->
+<!--          icon="Plus"-->
 <!--          size="mini"-->
 <!--          @click="handleAdd"-->
 <!--        >新增</el-button>-->
@@ -47,7 +47,7 @@
 <!--        <el-button-->
 <!--          type="success"-->
 <!--          plain-->
-<!--          icon="el-icon-edit"-->
+<!--          icon="Edit"-->
 <!--          size="mini"-->
 <!--          :disabled="single"-->
 <!--          @click="handleUpdate"-->
@@ -57,7 +57,7 @@
         <el-button
           type="danger"
           plain
-          icon="el-icon-delete"
+          icon="Delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
@@ -87,7 +87,7 @@
             <el-link :underline="false">
               <el-button
                 type="text"
-                icon="el-icon-message"
+                icon="Message"
                 size="mini">详情
               </el-button>
             </el-link>
@@ -104,7 +104,7 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
+            icon="Delete"
             @click="handleDelete(scope.row)"
           >删除</el-button>
         </template>

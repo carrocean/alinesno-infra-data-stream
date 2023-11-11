@@ -13,7 +13,7 @@
     <br v-if="isHome">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="任务" prop="jobConfigId">
-        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable size="small" filterable style="width: 480px" @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable  filterable style="width: 480px" @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in JobNameList"
             :key="item.id"
@@ -23,7 +23,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select  v-model="queryParams.status" placeholder="请选择状态"  clearable size="small" filterable  @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.status" placeholder="请选择状态"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in logStatusOptions"
             :key="item.key"
@@ -33,8 +33,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -43,7 +43,7 @@
         <el-button
           type="danger"
           plain
-          icon="el-icon-delete"
+          icon="Delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
@@ -78,13 +78,13 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
+            icon="Delete"
             @click="handleDelete(scope.row)" style="margin-right: 5px"
           >删除</el-button>
           <el-link v-if="scope.row.status=='0'"  @click="getLogErrorInfo(scope.row)" :underline="false">
             <el-button
               type="text"
-              icon="el-icon-message"
+              icon="Message"
               size="mini" style="margin-right: 5px">详情
             </el-button>
           </el-link>
@@ -388,9 +388,9 @@ getList();
 
 <style>
 .op-title {
-font-size: 14px;
-line-height: 14px;
-font-weight: 600;
-margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 </style>

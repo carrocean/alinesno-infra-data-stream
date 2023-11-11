@@ -2,7 +2,7 @@
   <div v-loading="loading" :class="'fl-jartask-container fl-task-edit'+(isReadOnly?' fl-task-edit__isRead':'')">
     <el-page-header @back="handleBack()"  :content=title class="back"></el-page-header>
     <el-card shadow="false" class="box-card" style="margin-top: 20px;">
-      <el-form ref="taskform" :model="form" :rules="rules" :disabled="isReadOnly" label-width="100px" size="small">
+      <el-form ref="taskform" :model="form" :rules="rules" :disabled="isReadOnly" label-width="100px" >
       <el-row v-if="curParams.flag==='history'">
         <el-col :span="10">
           <el-form-item label="版本号" prop="version">

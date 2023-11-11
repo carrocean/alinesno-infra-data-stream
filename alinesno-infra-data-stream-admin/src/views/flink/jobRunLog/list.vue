@@ -9,7 +9,7 @@
     <el-page-header @back="handleBack()"  :content=linkTitle v-show="showLinkTitle"  class="back"></el-page-header>
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="任务" prop="jobConfigId">
-        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable size="small" filterable  style="width: 400px" @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.jobConfigId" placeholder="请选择任务"  clearable  filterable  style="width: 300px" @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in JobNameList"
             :key="item.id"
@@ -18,35 +18,9 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="启动时间" prop="startTime">
-        <el-date-picker
-          clearable
-          size="small"
-          v-model="queryParams.startTime"
-          range="startTime"
-          type="datetime"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          format="yyyy-MM-dd HH:mm:ss"
-          placeholder="选择启动时间"
-          @keyup.enter.native="handleQuery">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="结束时间" prop="endTime">
-        <el-date-picker
-          clearable
-          size="small"
-          v-model="queryParams.endTime"
-          range="endTime"
-          type="datetime"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          format="yyyy-MM-dd HH:mm:ss"
-          placeholder="选择结束时间"
-          @keyup.enter.native="handleQuery">
-        </el-date-picker>
-      </el-form-item>
 
       <el-form-item label="任务状态" prop="jobStatus">
-        <el-select  v-model="queryParams.jobStatus" placeholder="任务状态"  clearable size="small" filterable  @keyup.enter.native="handleQuery">
+        <el-select  v-model="queryParams.jobStatus" placeholder="任务状态"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in jobStatuss"
             :key="item.key"
@@ -56,8 +30,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -66,7 +40,7 @@
         <el-button
           type="danger"
           plain
-          icon="el-icon-delete"
+          icon="Delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
@@ -118,7 +92,7 @@
             <el-link style="margin-right: 5px" :underline="false">
               <el-button
                 type="text"
-                icon="el-icon-message"
+                icon="Message"
                 size="mini">详情
               </el-button>
             </el-link>
@@ -126,7 +100,7 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
+            icon="Delete"
             @click="handleDelete(scope.row) " style="margin-right: 5px"
           >删除</el-button>
         </template>

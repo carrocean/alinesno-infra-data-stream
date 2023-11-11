@@ -2,7 +2,7 @@
   <div v-loading="loading" :class="'fl-sqltask-container fl-task-edit'+(isReadOnly?' fl-task-edit__isRead':'')">
     <el-page-header @back="handleBack()"   :content=title class="back"></el-page-header>
     <el-card shadow="false" class="box-card" style="margin-top: 20px;">
-        <el-form ref="taskform" :model="form" :rules="rules" :disabled="isReadOnly" label-width="80px" size="small">
+        <el-form ref="taskform" :model="form" :rules="rules" :disabled="isReadOnly" label-width="80px" >
       <el-row v-if="curParams.flag==='history'">
         <el-col :span="10">
           <el-form-item label="版本号" prop="version">
@@ -36,7 +36,8 @@
         <el-col :span="2">
           <el-form-item label="参数说明" label-width="100px">
 <!--            <span slot="label"><a href="https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/" style="color: blue" target="_blank">参数说明</a>-->
-            <span slot="label">参数说明
+            <span slot="label">
+              <!-- 参数说明 -->
               <el-popover placement="right" trigger="hover">
                 <template v-if="form.deployModeEnum==='LOCAL'">
                   在LOCAL模式下无需配置
@@ -70,7 +71,8 @@
         </el-col>
         <el-col :span="14">
           <el-form-item label="状态保存" prop="flinkCheckpointConfig" label-width="100px">
-            <span slot="label">状态保存
+            <span slot="label">
+              <!-- 状态保存 -->
               <el-popover placement="bottom-start" trigger="hover">
                 不填默认不开启checkpoint机制，支持如下参数：<br>
                 checkpointInterval：整数，默认每60s保存一次checkpoint，单位毫秒<br>
@@ -116,7 +118,7 @@
           <el-row>
             <el-col :span="24">
               <el-form-item label="二方JAR" prop="extJarPath" label-width="100px">
-                <span slot="label"> <a href="/flink/flink/jarFile/list" style="color: red" target="_blank">二方库管理</a>
+                <span slot="label"> <a href="/system/flink/jarFile/list" style="color: red" target="_self">二方库管理</a>
                   <el-popover placement="right" trigger="hover">
                     自定义udf、连接器等jar地址，多个请使用换行(如 http://xxxx.com/udf.jar 或者 xxx.jar 两者都支持) 目前只支持http 可在二方库管理
                     <i slot="reference" class="el-icon-info" />
