@@ -1,5 +1,7 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -24,14 +26,19 @@ public class JobAlarmConfigEntity extends InfraBaseEntity {
 
     // job_config主表id
     @TableField("job_id")
+	@ColumnType(length= 20)
+	@ColumnComment("job_config主表id")
     private Long jobId;
 
     // 类型 1:钉钉告警 2:url回调 3:异常自动拉起任务
     @TableField("type")
+	@ColumnType(length=11)
+	@ColumnComment("类型 1:钉钉告警 2:url回调 3:异常自动拉起任务")
     private Integer type;
 
     // 更新版本号
     @TableField("version")
+	@ColumnType(length=20)
+	@ColumnComment("更新版本号")
     private Long version;
-
 }

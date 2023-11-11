@@ -1,5 +1,7 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -43,22 +45,32 @@ public class SystemConfigEntity extends InfraBaseEntity {
 
     // key值
     @TableField("sys_key")
+	@ColumnType(length= 128)
+	@ColumnComment("key值")
     private String sysKey;
 
     // value
     @TableField("sys_val")
+	@ColumnType(length= 512)
+	@ColumnComment("value")
     private String sysVal;
 
     // 类型 如:sys  alarm
     @TableField("sys_type")
+	@ColumnType(length= 12)
+	@ColumnComment("类型")
     private String sysType;
 
     // 描述
     @TableField("sys_desc")
+	@ColumnType(length=64)
+	@ColumnComment("描述")
     private String sysDesc;
 
     // 序号
     @TableField("order_id")
+	@ColumnType(length= 11)
+	@ColumnComment("序号")
     private Integer orderId;
 
     public SystemConfigEntity(String key, String Val) {

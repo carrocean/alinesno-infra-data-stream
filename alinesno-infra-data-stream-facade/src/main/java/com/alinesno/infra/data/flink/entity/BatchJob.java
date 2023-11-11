@@ -1,5 +1,8 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,26 +17,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class BatchJob {
+    @ColumnType(length = 11)
+    @ColumnComment("")
+    @TableField("id")
+    private Long id;
 
-//  public BatchJob() {
-//  }
-//
-//  public BatchJob(Long id, String jobName, String cron) {
-//    this.id = id;
-//    this.jobName = jobName;
-//    this.cron = cron;
-//  }
+    /**
+     * 任务名称
+     */
+    @ColumnType(length = 50)
+    @ColumnComment("任务名称")
+    @TableField("job_name")
+    private String jobName;
 
-  private Long id;
-
-  /**
-   * 任务名称
-   */
-  private String jobName;
-
-  /**
-   * cron表达式
-   */
-  private String cron;
-
+    /**
+     * cron表达式
+     */
+    @ColumnType(length = 100)
+    @ColumnComment("cron表达式")
+    @TableField("cron")
+    private String cron;
 }

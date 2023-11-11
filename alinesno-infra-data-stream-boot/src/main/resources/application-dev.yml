@@ -18,6 +18,18 @@ spring:
   devtools:
     restart:
       enabled: true
+      
+actable:
+  table:
+    auto: update
+  model:
+    pack: com.alinesno.infra.data.flink.entity;
+  database:
+    type: mysql
+  index:
+    prefix: alinesno_data_flink_idx_
+  unique:
+    prefix: alinesno_data_flink_uni_
 
 mybatis-plus:
   check-config-location: false

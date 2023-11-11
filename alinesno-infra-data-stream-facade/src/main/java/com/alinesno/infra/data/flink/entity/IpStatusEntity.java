@@ -1,5 +1,7 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,14 +28,19 @@ public class IpStatusEntity extends InfraBaseEntity {
 
     // ip
     @TableField("ip")
+	@ColumnType(length=64)
+	@ColumnComment("ip")
     private String ip;
 
     // 1:运行 -1:停止
     @TableField("status")
+	@ColumnType(length= 11)
+	@ColumnComment("1:运行 -1:停止")
     private Integer status;
 
     // 最后心跳时间
     @TableField("last_time")
+	@ColumnType(length= 255)
+	@ColumnComment("最后心跳时间")
     private LocalDateTime lastTime;
-
 }
