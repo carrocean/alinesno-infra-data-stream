@@ -1,8 +1,11 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,14 +29,19 @@ public class SavepointBackupEntity extends InfraBaseEntity {
 
     // jobConfigId
     @TableField("job_config_id")
+	@ColumnType(MySqlTypeConstant.BIGINT)
+	@ColumnComment("jobConfigId")
     private Long jobConfigId;
 
     // 地址
     @TableField("savepoint_path")
+	@ColumnType(length= 2048)
+	@ColumnComment("地址")
     private String savepointPath;
 
     // 备份时间
     @TableField("backup_time")
+	@ColumnType(MySqlTypeConstant.DATETIME)
+	@ColumnComment("备份时间")
     private Date backupTime;
-
 }

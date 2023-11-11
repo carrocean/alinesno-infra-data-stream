@@ -1,8 +1,11 @@
 package com.alinesno.infra.data.flink.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,14 +27,19 @@ public class UploadFileEntity extends InfraBaseEntity {
 
     // 文件名字
     @TableField("file_name")
+	@ColumnType(length=128)
+	@ColumnComment("文件名字")
     private String fileName;
 
     // 文件路径
     @TableField("file_path")
+	@ColumnType(length=512)
+	@ColumnComment("文件路径")
     private String filePath;
 
     // 1:jar
     @TableField("`type`")
+	@ColumnType(MySqlTypeConstant.INT)
+	@ColumnComment("1:jar")
     private Integer type;
-
 }
