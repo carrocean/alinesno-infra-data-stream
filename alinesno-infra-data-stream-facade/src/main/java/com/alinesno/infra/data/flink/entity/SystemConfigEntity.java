@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -69,7 +70,7 @@ public class SystemConfigEntity extends InfraBaseEntity {
 
     // 序号
     @TableField("order_id")
-	@ColumnType(length= 11)
+	@ColumnType(MySqlTypeConstant.INT)
 	@ColumnComment("序号")
     private Integer orderId;
 

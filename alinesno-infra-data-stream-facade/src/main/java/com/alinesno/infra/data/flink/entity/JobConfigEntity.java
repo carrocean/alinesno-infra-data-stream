@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -52,7 +53,7 @@ public class JobConfigEntity extends InfraBaseEntity {
 
     // sql语句
     @TableField("flink_sql")
-	@ColumnType(length= 100)
+	@ColumnType(MySqlTypeConstant.LONGTEXT)
 	@ColumnComment("sql语句")
     private String flinkSql;
 
@@ -94,7 +95,7 @@ public class JobConfigEntity extends InfraBaseEntity {
 
     // 最后一次启动时间
     @TableField("last_start_time")
-	@ColumnType(length= 255)
+	@ColumnType(MySqlTypeConstant.DATE)
 	@ColumnComment("最后一次启动时间")
     private Date lastStartTime;
 

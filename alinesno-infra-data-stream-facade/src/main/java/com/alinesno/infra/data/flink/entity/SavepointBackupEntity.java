@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,7 +29,7 @@ public class SavepointBackupEntity extends InfraBaseEntity {
 
     // jobConfigId
     @TableField("job_config_id")
-	@ColumnType(length=50)
+	@ColumnType(MySqlTypeConstant.BIGINT)
 	@ColumnComment("jobConfigId")
     private Long jobConfigId;
 
@@ -40,7 +41,7 @@ public class SavepointBackupEntity extends InfraBaseEntity {
 
     // 备份时间
     @TableField("backup_time")
-	@ColumnType(length= 19)
+	@ColumnType(MySqlTypeConstant.DATETIME)
 	@ColumnComment("备份时间")
     private Date backupTime;
 }

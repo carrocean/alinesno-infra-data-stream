@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import static com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant.BIGINT;
+import static com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant.INT;
+
 /**
  * 功能名：任务告警配置
  * 数据表：job_alarm_config
@@ -26,19 +29,19 @@ public class JobAlarmConfigEntity extends InfraBaseEntity {
 
     // job_config主表id
     @TableField("job_id")
-	@ColumnType(length= 20)
+	@ColumnType(BIGINT)
 	@ColumnComment("job_config主表id")
     private Long jobId;
 
     // 类型 1:钉钉告警 2:url回调 3:异常自动拉起任务
     @TableField("type")
-	@ColumnType(length=11)
+	@ColumnType(INT)
 	@ColumnComment("类型 1:钉钉告警 2:url回调 3:异常自动拉起任务")
     private Integer type;
 
     // 更新版本号
     @TableField("version")
-	@ColumnType(length=20)
+	@ColumnType(BIGINT)
 	@ColumnComment("更新版本号")
     private Long version;
 }

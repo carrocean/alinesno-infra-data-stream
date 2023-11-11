@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,7 +27,7 @@ public class JobConfigHistoryEntity extends InfraBaseEntity {
 
     // job_config主表Id
     @TableField("job_config_id")
-	@ColumnType(length= 10)
+	@ColumnType(MySqlTypeConstant.BIGINT)
 	@ColumnComment("job_config主表Id")
     private Long jobConfigId;
 
@@ -56,7 +57,7 @@ public class JobConfigHistoryEntity extends InfraBaseEntity {
 
     // sql语句
     @TableField("flink_sql")
-	@ColumnType(length=255)
+	@ColumnType(MySqlTypeConstant.LONGTEXT)
 	@ColumnComment("sql语句")
     private String flinkSql;
 
@@ -74,7 +75,7 @@ public class JobConfigHistoryEntity extends InfraBaseEntity {
 
     // 更新版本号
     @TableField("version")
-	@ColumnType(length=20)
+	@ColumnType(MySqlTypeConstant.BIGINT)
 	@ColumnComment("更新版本号")
     private Long version;
 
@@ -86,7 +87,7 @@ public class JobConfigHistoryEntity extends InfraBaseEntity {
 
     // 任务类型 0:sql 1:自定义jar
     @TableField("job_type")
-	@ColumnType(length= 11)
+	@ColumnType(MySqlTypeConstant.INT)
 	@ColumnComment("任务类型")
     private Integer jobType;
 }

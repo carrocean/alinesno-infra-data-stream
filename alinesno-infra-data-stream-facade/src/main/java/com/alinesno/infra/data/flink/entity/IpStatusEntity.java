@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -40,7 +41,7 @@ public class IpStatusEntity extends InfraBaseEntity {
 
     // 最后心跳时间
     @TableField("last_time")
-	@ColumnType(length= 255)
+	@ColumnType(MySqlTypeConstant.DATETIME)
 	@ColumnComment("最后心跳时间")
     private LocalDateTime lastTime;
 }

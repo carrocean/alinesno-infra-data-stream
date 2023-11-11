@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,7 +29,7 @@ public class JobRunLogEntity extends InfraBaseEntity {
 
     // jobConfigId
     @TableField("job_config_id")
-	@ColumnType(length=50)
+	@ColumnType(MySqlTypeConstant.BIGINT)
 	@ColumnComment("jobConfigId")
     private Long jobConfigId;
 
@@ -58,7 +59,7 @@ public class JobRunLogEntity extends InfraBaseEntity {
 
     // 启动时本地日志
     @TableField("local_log")
-	@ColumnType(length=255)
+	@ColumnType(MySqlTypeConstant.LONGTEXT)
 	@ColumnComment("启动时本地日志")
     private String localLog;
 
@@ -76,13 +77,13 @@ public class JobRunLogEntity extends InfraBaseEntity {
 
     // 启动时间
     @TableField("start_time")
-	@ColumnType(length= 10)
+	@ColumnType(MySqlTypeConstant.DATETIME)
 	@ColumnComment("启动时间")
     private Date startTime;
 
     // 启动时间
     @TableField("end_time")
-	@ColumnType(length= 10)
+	@ColumnType(MySqlTypeConstant.DATETIME)
 	@ColumnComment("启动时间")
     private Date endTime;
 

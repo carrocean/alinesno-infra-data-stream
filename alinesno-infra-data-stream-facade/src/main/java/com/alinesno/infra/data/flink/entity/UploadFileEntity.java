@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -38,7 +39,7 @@ public class UploadFileEntity extends InfraBaseEntity {
 
     // 1:jar
     @TableField("`type`")
-	@ColumnType(length=11)
+	@ColumnType(MySqlTypeConstant.INT)
 	@ColumnComment("1:jar")
     private Integer type;
 }

@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -44,7 +45,7 @@ public class UserEntity extends InfraBaseEntity {
 
     // 1:启用 0: 停用
     @TableField("status")
-	@ColumnType(length=11)
+	@ColumnType(MySqlTypeConstant.INT)
 	@ColumnComment("1:启用 0: 停用")
     private Integer status;
 }

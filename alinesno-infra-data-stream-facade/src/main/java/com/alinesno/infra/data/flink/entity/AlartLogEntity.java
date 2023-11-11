@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import static com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant.BIGINT;
+import static com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant.LONGTEXT;
+
 /**
  * 功能名：告警日志
  * 数据表：alart_log
@@ -26,7 +29,7 @@ public class AlartLogEntity extends InfraBaseEntity {
 
     // job_config的id  如果0代表的是测试,
     @TableField("job_config_id")
-	@ColumnType(length= 255)
+	@ColumnType(BIGINT)
 	@ColumnComment("job_config的id")
     private Long jobConfigId;
 
@@ -56,7 +59,7 @@ public class AlartLogEntity extends InfraBaseEntity {
 
     // 失败原因
     @TableField("fail_log")
-	@ColumnType(length=255)
+	@ColumnType(LONGTEXT)
 	@ColumnComment("失败原因")
     private String failLog;
 }
