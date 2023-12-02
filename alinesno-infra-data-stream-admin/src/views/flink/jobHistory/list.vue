@@ -189,7 +189,7 @@ const loading = ref(false);
 const ids = ref([]);
 
 // 选中数组
-const jobName = ref([]);
+const jobNames = ref([]);
 
 // 非单个禁用
 const single = ref(true);
@@ -341,18 +341,18 @@ onMounted(() => {
       //   queryParams.pageSize = params.pageSize ;
       // }
       if ( params.flag === 'tasklist' ) { // 保存由任务列表跳转过来的状态
-        backFlag.value = true
-        curParams.value.flag = params.flag
-        curParams.value.data = params.data
-        curParams.value.context = params.context
+        backFlag.value = true ;
+        curParams.value.flag = params.flag ;
+        curParams.value.data = params.data ;
+        curParams.value.context = params.context ;
         showLinkTitle.value = true ;
       }
       if (params.parentContent) { // 详情回退后，保存继续回退到任务列表的状态
-        backFlag.value = true
-        curParams.value.context = params.parentContent
+        backFlag.value = true ;
+        curParams.value.context = params.parentContent ;
       }
     }
-    handleQuery()
+    handleQuery() ;
   } else {
 
     getList();
@@ -363,9 +363,9 @@ onMounted(() => {
 
 function handleBack() { // 返回
       if ( curParams.value.flag === 'loglist' ) {
-        proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context })
+        proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context }) ;
       } else if (this.params.flag === 'tasklist') {
-        proxy.$router.replace({ name: 'jobManage', params: curParams.value.context })
+        proxy.$router.replace({ name: 'jobManage', params: curParams.value.context }) ;
       }
 }
 
@@ -470,7 +470,7 @@ function handleDelete(row) {
   const jobConfigIds = row.id || ids.value;
   let jobNameList = row.jobName || jobNames.value;
   //避免弹出窗数据太长，只显示前15条数据
-  if ( jobNameList.length > 15 ) {
+  if ( Array.isArray(jobNameList) && jobNameList.length > 15 ) {
     jobNameList = jobNameList.slice(0,15);
   }
 
@@ -530,10 +530,10 @@ function getJobNameList() {
 
 function getRouteTaskName(jobType) {
     switch (jobType) {
-      case 'SQL_STREAMING': return 'ViewSqlStreamingTask'
-      case 'SQL_BATCH': return 'ViewSqlBatchTask'
-      case 'JAR': return 'ViewJarTask'
-      default: return ''
+      case 'SQL_STREAMING': return 'ViewSqlStreamingTask' ;
+      case 'SQL_BATCH': return 'ViewSqlBatchTask' ;
+      case 'JAR': return 'ViewJarTask' ;
+      default: return '' ;
     }
 }
 

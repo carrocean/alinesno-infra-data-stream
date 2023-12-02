@@ -271,19 +271,19 @@ const { queryParams, queryParamsConfig, form, rules, upload } = toRefs(data);
 
 /** 查询上传文件管理列表 */
 function getList() {
-    searchParams.value = searchParam(queryParamsConfig.value, queryParams.value);
-    loading.value = true;
+    searchParams.value = searchParam(queryParamsConfig.value, queryParams.value) ;
+    loading.value = true ;
     listUploadFile(searchParams.value).then(response => {
-      UploadFileList.value = response.rows;
-      total.value = response.total;
-      loading.value = false;
+      UploadFileList.value = response.rows ;
+      total.value = response.total ;
+      loading.value = false ;
     });
 }
 
 // 取消按钮
 function cancel() {
-  open.value = false;
-  reset();
+  open.value = false ;
+  reset() ;
 }
 
 // 表单重置
@@ -293,20 +293,20 @@ function reset() {
     filePath: null,
     type: null
   };
-  proxy.resetForm("UploadFileRef");
+  proxy.resetForm("UploadFileRef") ;
 }
 
 /** 搜索按钮操作 */
 function handleQuery() {
   // 获取参数
-  queryParams.value.pageNum = 1;
-  getList();
+  queryParams.value.pageNum = 1 ;
+  getList() ;
 }
 
 /** 重置按钮操作 */
 function resetQuery() {
-  proxy.resetForm("queryForm");
-  handleQuery();
+  proxy.resetForm("queryForm") ;
+  handleQuery() ;
 }
 
 // 多选框选中数据
@@ -319,19 +319,19 @@ function handleSelectionChange(selection) {
 
 /** 新增按钮操作 */
 function handleAdd() {
-  reset();
-  open.value = true;
-  title.value = "添加上传文件管理";
+  reset() ;
+  open.value = true ;
+  title.value = "添加上传文件管理" ;
 }
 
 /** 修改按钮操作 */
 function handleUpdate(row) {
-  reset();
-  const fileName = row.id || ids.value
+  reset() ;
+  const fileName = row.id || ids.value ;
   getUploadFile(fileName).then(response => {
-    form.value = response.data;
-    open.value = true;
-    title.value = "修改上传文件管理";
+    form.value = response.data ;
+    open.value = true ;
+    title.value = "修改上传文件管理" ;
   });
 }
 
@@ -339,17 +339,17 @@ function handleUpdate(row) {
 function submitForm() {
   proxy.$refs["UploadFileRef"].validate(valid => {
     if (valid) {
-      if (form.value.id != null) {
+      if ( form.value.id != null ) {
         updateUploadFile(form.value).then(response => {
-          proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
-          getList();
+          proxy.$modal.msgSuccess("修改成功") ;
+          open.value = false ;
+          getList() ;
         });
       } else {
         addUploadFile(form.value).then(response => {
-          proxy.$modal.msgSuccess("新增成功");
-          open.value = false;
-          getList();
+          proxy.$modal.msgSuccess("新增成功") ;
+          open.value = false ;
+          getList() ;
         });
       }
     }
@@ -358,10 +358,10 @@ function submitForm() {
 
 /** 删除按钮操作 */
 function handleDelete(row) {
-  const fileIds = row.id || ids.value;
-  let fileNames = row.fileName || names.value;
+  const fileIds = row.id || ids.value ;
+  let fileNames = row.fileName || names.value ;
   //避免弹出窗数据太长，只显示前15条数据
-  if ( fileNames.length > 15 ) {
+  if (  Array.isArray(fileNames) &&  fileNames.length > 15 ) {
     fileNames = fileNames.slice(0,15);
   }
 
@@ -370,10 +370,10 @@ function handleDelete(row) {
       cancelButtonText: "取消",
       type: "warning"
     }).then(function() {
-      return delUploadFile(fileIds);
+      return delUploadFile(fileIds) ;
     }).then(() => {
-      getList();
-      proxy.$modal.msgSuccess("删除成功");
+      getList() ;
+      proxy.$modal.msgSuccess("删除成功") ;
     }).catch(error => {
 
     })
@@ -383,7 +383,7 @@ function handleDelete(row) {
 function handleStatusChange(row) {
   return changeStatusUploadFile(row.id, row.status).then(response=>{
     if(response.code == 200){
-      proxy.$modal.msgSuccess("操作成功");
+      proxy.$modal.msgSuccess("操作成功") ;
     }
   });
 }
@@ -392,58 +392,58 @@ function handleStatusChange(row) {
 function chanageFile(value , filed , id){
   return changeUploadFileField(value , filed , id).then(response =>{
     if(response.code == 200){
-      proxy.$modal.msgSuccess("操作成功");
+      proxy.$modal.msgSuccess("操作成功") ;
     }
   }) ;
 }
 
 /** 导出按钮操作 */
 function handleExport() {
-  const queryParams = queryParams.value;
+  const queryParams = queryParams.value ;
   proxy.$modal.confirm('是否确认导出所有上传文件管理数据项?', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"
     }).then(function() {
-      return exportUploadFile(queryParams);
+      return exportUploadFile(queryParams) ;
     }).then(response => {
-       proxy.download(response.msg);
+       proxy.download(response.msg) ;
     })
 }
 
 function handleUpload(row){
-  upload.value.isUploading = false;
-  upload.value.open = true;
+  upload.value.isUploading = false ;
+  upload.value.open = true ;
 }
 
 
 function copyValue(value) {
-  const textarea = document.createElement('textarea');
-  textarea.value = value;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  proxy.$modal.$message.success('复制成功');
+  const textarea = document.createElement('textarea') ;
+  textarea.value = value ;
+  document.body.appendChild(textarea) ;
+  textarea.select() ;
+  document.execCommand('copy') ;
+  document.body.removeChild(textarea) ;
+  proxy.$modal.msgSuccess('复制成功') ;
 }
 
 
 
 // 文件上传失败钩子
 function onErrorFile(){
-  ElMessage.error('文件上传失败')
-  proxy.$refs.upFileDialog.clearFiles(); //去掉文件列表
+  ElMessage.error('文件上传失败') ;
+  proxy.$refs.upFileDialog.clearFiles() ; //去掉文件列表
 }
 
 // 文件上传成功钩子
 function onSuccessFile(){
-  ElMessage.success('文件上传成功')
-  proxy.$refs.upFileDialog.clearFiles(); //去掉文件列表
+  ElMessage.success('文件上传成功') ;
+  proxy.$refs.upFileDialog.clearFiles() ; //去掉文件列表
 }
 
 function uploadClose(){
   upload.value.open = false ;
-  handleQuery();
+  handleQuery() ;
 }
 
 

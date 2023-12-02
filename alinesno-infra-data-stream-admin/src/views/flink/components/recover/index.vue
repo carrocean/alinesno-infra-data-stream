@@ -80,120 +80,119 @@ const { form, rules, task } = toRefs(data);
 
 
 function openDialog(task) {
-  visible.value = true
-  list.value = []
-  form.value.savepoint = ''
-  form.value.taskid = task.id
-  task.value = task
-  title.value = `恢复任务运行[${task.jobName}]`
-  currentRow.value = null
-  radioIndex.value = false
-  querySavePointList(task.id)
+  visible.value = true ;
+  list.value = [] ;
+  form.value.savepoint = '' ;
+  form.value.taskid = task.id ;
+  task.value = task ;
+  title.value = `恢复任务运行[${task.jobName}]` ;
+  currentRow.value = null ;
+  radioIndex.value = false ;
+  querySavePointList(task.id) ;
 }
 
 function querySavePointList(id) { // 查询SavePoint历史列表（最近10条）
-  loading.value = true
-  radioIndex.value = false
+  loading.value = true ;
+  radioIndex.value = false ;
   querySavePointList10(id).then(response => {
-    loading.value = false
-    proxy.$refs.RecoverSavePointRef.clearValidate()
+    loading.value = false ;
+    proxy.$refs.RecoverSavePointRef.clearValidate() ;
     const { code, msg, data } = response
     if ( code !== 200 ) {
-      proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常!') })
+      proxy.$modal.msgError(msg || '请求数据异常!') ;
       return
     }
-    list.value = (data && data.data) ? data.data : []
-    loading.value = false
+    list.value = (data && data.data) ? data.data : [] ;
+    loading.value = false ;
   }).catch(error => {
-    loading.value = false
+    loading.value = false ;
   })
 }
 
 function addPerSavepoint() {
   proxy.$refs.RecoverSavePointRef.validate(valid => {
     if (valid) {
-      loading.value = true
-      const jobConfigId = form.value.taskid
-      const savepointPath = form.value.savepoint
+      loading.value = true ;
+      const jobConfigId = form.value.taskid ;
+      const savepointPath = form.value.savepoint ;
       addSavepoint(jobConfigId, savepointPath).then(response => {
-        loading.value = false
-        const {  code, msg, data } = response
+        loading.value = false ;
+        const {  code, msg, data } = response ;
         if ( code !== 200 ) {
-          proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常!') })
+          proxy.$modal.msgError(msg || '请求数据异常!') ;
           return
         }
-        list.value = (data && data.data) ? data.data : []
-        querySavePointList(jobConfigId)
+        list.value = (data && data.data) ? data.data : [] ;
+        querySavePointList(jobConfigId) ;
       }).catch(error => {
-        loading.value = false
+        loading.value = false ;
       })
     } else {
-      proxy.$refs.inputSavePoint.focus()
+      proxy.$refs.inputSavePoint.focus() ;
     }
   })
 }
 
 function blurSavePoint() {
-  this.$refs.RecoverSavePointRef.clearValidate()
+  this.$refs.RecoverSavePointRef.clearValidate() ;
 }
 
 function handleCurrentChange(row) { // 选中行
   if (row) {
-    currentRow.value = row
-    const index = list.value.findIndex(item => item.id == currentRow.id.value)
+    currentRow.value = row ;
+    const index = list.value.findIndex(item => item.id == currentRow.id.value) ;
     if (index > -1) {
-      radioIndex.value = index
+      radioIndex.value = index ;
     }
   }
 }
 
 function getCurrentRow(index) { // 设置单选框索引
-  radioIndex.value = index
+  radioIndex.value = index ;
 }
 
 function doConfirm() {
   if ( !currentRow.value ) {
-    proxy.$modal.$message({ type: 'error', message: '请选择备份记录!' })
+    proxy.$modal.msgError('请选择备份记录!') ;
     return
   }
-  const id = form.value.taskid
-  const savepointId = currentRow.value.id
-  const savepointPath = currentRow.value.savepointPath
+  const id = form.value.taskid ;
+  const savepointId = currentRow.value.id ;
+  const savepointPath = currentRow.value.savepointPath ;
   proxy.$modal.confirm(`是否恢复任务[备份：${savepointPath}]！`, '提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
   }).then(() => {
-    loading.value = true
+    loading.value = true ;
     startSavepoint(id, savepointId).then(response => {
-      loading.value = false
-      const { code, msg, data } = response
+      loading.value = false ;
+      const { code, msg, data } = response ;
       if ( code !== 200 ) {
-        proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常!') })
+        proxy.$modal.msgError(msg || '请求数据异常!') ;
         return
       }
-      proxy.$modal.$message({ type: 'info', message: `正在恢复任务[备份：${savepointId}]，稍后请刷新!` })
-      this.$parent.getTasks()
-      this.visible = false
+      proxy.$modal.msgSuccess(`正在恢复任务[备份：${savepointId}]，稍后请刷新!`) ;
+      this.$parent.getTasks() ;
+      this.visible = false ;
     }).catch(error => {
-      loading.value = false
-      // console.log(error)
+      loading.value = false ;
     })
   })
 }
 
 function doCancel() {
-  visible.value = false
+  visible.value = false ;
 }
 
 function doClose() {
-  list.value = []
-  form.value.savepoint = ''
-  form.value.taskid = ''
-  task.value = null
-  title.value = ''
-  currentRow.value = null
-  radioIndex.value = false
+  list.value = [] ;
+  form.value.savepoint = '' ;
+  form.value.taskid = '' ;
+  task.value = null ;
+  title.value = '' ;
+  currentRow.value = null ;
+  radioIndex.value = false ;
 }
 
 </script>

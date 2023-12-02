@@ -206,7 +206,7 @@
             </el-link>
           </router-link>
 
-          <el-link @click.native="copyConfig(scope.row.id)" style="margin-right: 2px" :underline="false">
+          <el-link @click.native="copyJobConfig(scope.row)" style="margin-right: 2px" :underline="false">
             <el-button
               type="text"
               icon="el-icon-document-copy"
@@ -503,7 +503,7 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
       reset();
-      const jobName = row.id || ids.value
+      const jobName = row.id || ids.value ;
       getJobConfig(jobName).then(response => {
         form.value = response.data;
         open.value = true;
@@ -535,12 +535,12 @@ function submitForm() {
 
 /** 删除按钮操作 */
 function handleDelete(row) {
-      const jobIds = row.id || ids.value;
-      let jobNameList = row.jobName || jobNames.value;
+      const jobIds = row.id || ids.value ;
+      let jobNameList = row.jobName || jobNames.value ;
       //避免弹出窗数据太长，只显示前15条数据
-      if ( jobNameList.length > 15 ) {
-        jobNameList = jobNameList.slice(0,15);
-      }
+      // if ( jobNameList.length > 15 ) {
+      //   jobNameList = jobNameList.slice(0, 15) ;
+      // }
 
       proxy.$modal.confirm('是否确认删除任务名称为"' + jobNameList + '"的数据项?', "警告", {
           confirmButtonText: "确定",
@@ -591,65 +591,65 @@ function handleExport() {
 /** 任务状态 */
 function getStatusDesc(status) {
       switch (status) {
-        case -2: return '未知'
-        case -1: return '失败'
-        case 0: return '停止'
-        case 1: return '运行中'
-        case 2: return '启动中'
-        case 3: return '提交成功'
-        case 'UNKNOWN': return '未知'
-        case 'FAIL': return '失败'
-        case 'STOP': return '停止'
-        case 'RUN': return '运行中'
-        case 'STARTING': return '启动中'
-        case 'SUCCESS': return '提交成功'
-        default: return ''
+        case -2: return '未知' ;
+        case -1: return '失败' ;
+        case 0: return '停止' ;
+        case 1: return '运行中' ;
+        case 2: return '启动中' ;
+        case 3: return '提交成功' ;
+        case 'UNKNOWN': return '未知' ;
+        case 'FAIL': return '失败' ;
+        case 'STOP': return '停止' ;
+        case 'RUN': return '运行中' ;
+        case 'STARTING': return '启动中' ;
+        case 'SUCCESS': return '提交成功' ;
+        default: return '' ;
       }
 }
 
 /**开启或关闭任务 */
  function changeIsOpen(callback, row) {
-      const text = (callback === 1) ? '开启' : '关闭'
-      const { id, jobName } = row
+      const text = (callback === 1) ? '开启' : '关闭' ;
+      const { id, jobName } = row ;
       proxy.$modal.confirm(`是否${text}[${jobName}]`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         if (callback === 1) {
-          loading.value = true
+          loading.value = true ;
           openTask(id).then(response => {
-            loading.value = false
-            const { code, msg, data } = response
+            loading.value = false ;
+            const { code, msg, data } = response ;
             if (code !== 200 ) {
-              row.isOpen = (callback === 1) ? 0 : 1
-              proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+              row.isOpen = (callback === 1) ? 0 : 1 ;
+              proxy.$modal.msgError(msg || '请求数据异常！') ;
               return
             }
-            proxy.$modal.$message({ type: 'success', message: `开启[${jobName}]成功！` })
+            proxy.$modal.msgSuccess(`开启[${jobName}]成功！`) ;
           }).catch(error => {
-            loading.value = false
-            row.isOpen = (callback === 1) ? 0 : 1
+            loading.value = false ;
+            row.isOpen = (callback === 1) ? 0 : 1 ;
           })
         } else if (callback === 0) {
-          loading.value = true
+          loading.value = true ;
           closeTask(id).then(response => {
-            loading.value = false
-            const { code, msg, data } = response
+            loading.value = false ;
+            const { code, msg, data } = response ;
             if (code !== 200 ) {
-              row.isOpen = (callback === 1) ? 0 : 1
-              proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+              row.isOpen = (callback === 1) ? 0 : 1 ;
+              proxy.$modal.msgError(msg || '请求数据异常！') ;
               return
             }
-            proxy.$modal.$message({ type: 'success', message: `关闭[${jobName}]成功！` })
+            proxy.$modal.msgSuccess(`关闭[${jobName}]成功！`) ;
           }).catch(error => {
-            loading.value = false
-            row.isOpen = (callback === 1) ? 0 : 1
+            loading.value = false ;
+            row.isOpen = (callback === 1) ? 0 : 1 ;
           })
         }
       }).catch(action => {
-        row.isOpen = (callback === 1) ? 0 : 1
-        // proxy.$modal.$message({ type: 'warning', message: '取消' })
+        row.isOpen = (callback === 1) ? 0 : 1 ;
+        proxy.$modal.msgWarning('取消') ;
       })
   }
 
@@ -658,26 +658,26 @@ function getStatusDesc(status) {
       switch (flag) {
         case 'create':
           switch (jobTypeEnum) {
-            case 'SQL_STREAMING': return 'CreateSqlStreamingTask'
-            case 'SQL_BATCH': return 'CreateSqlBatchTask'
-            case 'JAR': return 'CreateJarTask'
-            default: return ''
+            case 'SQL_STREAMING': return 'CreateSqlStreamingTask' ;
+            case 'SQL_BATCH': return 'CreateSqlBatchTask' ;
+            case 'JAR': return 'CreateJarTask' ;
+            default: return '' ;
           }
         case 'update':
           switch (jobTypeEnum) {
-            case 'SQL_STREAMING': return 'UpdateSqlStreamingTask'
-            case 'SQL_BATCH': return 'UpdateSqlBatchTask'
-            case 'JAR': return 'UpdateJarTask'
-            default: return ''
+            case 'SQL_STREAMING': return 'UpdateSqlStreamingTask' ;
+            case 'SQL_BATCH': return 'UpdateSqlBatchTask' ;
+            case 'JAR': return 'UpdateJarTask' ;
+            default: return '' ;
           }
         case 'view':
           switch (jobTypeEnum) {
-            case 'SQL_STREAMING': return 'ViewSqlStreamingTask'
-            case 'SQL_BATCH': return 'ViewSqlBatchTask'
-            case 'JAR': return 'ViewJarTask'
-            default: return ''
+            case 'SQL_STREAMING': return 'ViewSqlStreamingTask' ;
+            case 'SQL_BATCH': return 'ViewSqlBatchTask' ;
+            case 'JAR': return 'ViewJarTask' ;
+            default: return '' ;
           }
-        default: return ''
+        default: return '' ;
       }
     }
 
@@ -698,66 +698,63 @@ function queryContent() {
 
 /** 启动任务 */
 function startJobTask(row) {
-      this.loading = true
-      const { id, jobName } = row
+      this.loading = true ;
+      const { id, jobName } = row ;
       startTask(id).then(response => {
-        this.loading = false
-        const { code, msg, data } = response
-
-        if (code !== 200 ) {s
-          proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+        this.loading = false ;
+        const { code, msg, data } = response ;
+        if (code !== 200 ) {
+          proxy.$modal.msgError(msg || '请求数据异常！') ;
           return
         }
-        this.handleQuery()
-        proxy.$modal.$message({ type: 'info', message: `正在启动[${jobName}]，稍后请刷新!或到任务日志中查看启动日志` })
+        this.handleQuery() ;
+        proxy.$modal.msgSuccess(`正在启动[${jobName}]，稍后请刷新!或到任务日志中查看启动日志`) ;
       }).catch(error => {
-        this.loading = false
+        this.loading = false ;
       })
 }
 
 /** 停止任务 */
 function stopJobTask(row) {
-      const { id, jobName } = row
+      const { id, jobName } = row ;
       proxy.$modal.confirm(`确定要停止任务【${jobName}】吗？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.loading = true
+        this.loading = true ;
         stopTask(id).then(response => {
-          this.loading = false
-          const { code, msg, data } = response
+          this.loading = false ;
+          const { code, msg, data } = response ;
           if (code !== 200 ) {
-            proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+            proxy.$modal.msgError(msg || '请求数据异常！') ;
             return
           }
-          this.handleQuery()
-          proxy.$modal.$message({ type: 'success', message: `正在停止任务【${jobName}】，稍后请刷新！` })
+          this.handleQuery() ;
+          proxy.$modal.msgSuccess(`正在停止任务【${jobName}】，稍后请刷新！` ) ;
         }).catch(error => {
-          this.loading = false
-          // proxy.$modal.$message({ type: 'error', message: '请求异常！' })
-          // console.log(error)
+          this.loading = false ;
         })
       })
 }
 
 /**备份任务状态 */
  function saveJobPoint(row) {
-      const { id, jobName } = row
+      const { id, jobName } = row ;
       proxy.$modal.confirm(`确定要手动执行[${jobName}]savePoint吗？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'info'
       }).then(() => {
-        this.loading = true
+        this.loading = true ;
         savePoint(id).then(response => {
-          this.loading = false
-          const { code, msg, data } = response
+          this.loading = false ;
+          const { code, msg, data } = response ;
           if (code !== 200 || !success) {
-            proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+            proxy.$modal.msgError(msg || '请求数据异常！') ;
             return
           }
-          proxy.$modal.$message({ type: 'success', message: `手动执行[${jobName}]savePoint成功！` })
+          proxy.$modal.msgSuccess(`手动执行[${jobName}]savePoint成功！`) ;
         }).catch(error => {
           this.loading = false
         })
@@ -766,44 +763,42 @@ function stopJobTask(row) {
 
 /**复制  */
 function copyJobConfig(row) {
-      const { id, jobName } = row
-      this.loading = true
+      const { id, jobName } = row ;
+      this.loading = true ;
       copyConfig(id).then(response => {
-        this.loading = false
-        const { code, msg, data } = response
+        this.loading = false ;
+        const { code, msg, data } = response ;
         if (code !== 200 ) {
-          proxy.$modal.$message({ type: 'error', message: (message || '请求数据异常！') })
+          proxy.$modal.msgError(message || '请求数据异常！') ;
           return
         }
         this.handleQuery()
-        proxy.$modal.$message({ type: 'success', message: `复制[${jobName}]成功！` })
+        proxy.$modal.msgSuccess(`复制[${jobName}]成功!`) ;
       }).catch(error => {
-        this.loading = false
-        // proxy.$modal.$message({ type: 'error', message: '请求异常！' })
-        // console.log(error)
+        this.loading = false ;
       })
 }
 
 /**从SavePoint中恢复任务  */
 function doRecoverSavePoint(row) {
-      this.$refs.recoverSavePoint.openDialog(row)
+      this.$refs.recoverSavePoint.openDialog(row) ;
 }
 
 
 
 function jobTypeTrans(value) {
       if (value === null || value === '') {
-        return 'SQL流任务';
+        return 'SQL流任务' ;
       }
       switch (value) {
         case 0:
-          return "SQL流任务";
+          return "SQL流任务" ;
         case 1:
-          return "JAR包";
+          return "JAR包" ;
         case 2:
-          return "SQL批任务";
+          return "SQL批任务" ;
         default:
-          return "SQL流任务";
+          return "SQL流任务" ;
       }
 }
 

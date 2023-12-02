@@ -367,7 +367,7 @@ function handleDelete(row) {
   const jobConfigIds = row.id || ids.value;
   let jobNameList =  row.jobConfigNameLabel || jobNames.value;
   //避免弹出窗数据太长，只显示前15条数据
-  if ( jobNameList.length > 15 ) {
+  if ( Array.isArray(jobNameList) && jobNameList.length > 15 ) {
     jobNameList = jobNameList.slice(0,15);
   }
 

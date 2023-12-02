@@ -245,7 +245,7 @@ const { props, queryParams, queryParamsConfig, form, rules, Params, ParamsConfig
 
 onMounted(() => {
   // 在组件挂载后执行的逻辑
-  getJobNameList()
+  getJobNameList() ;
 })
 
 
@@ -311,7 +311,7 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
   reset();
-  const jobConfigId = row.id || ids.value
+  const jobConfigId = row.id || ids.value ;
   getAlartLog(jobConfigId).then(response => {
     form.value = response.data;
     open.value = true;
@@ -326,7 +326,7 @@ function handleDelete(row) {
   const jobConfigIds = row.id || ids.value;
   let jobNameList = row.jobName || jobNames.value;
   //避免弹出窗数据太长，只显示前15条数据
-  if ( jobNameList.length > 15 ) {
+  if ( Array.isArray(jobNameList) && jobNameList.length > 15 ) {
     jobNameList = jobNameList.slice(0,15);
   }
   proxy.$modal.confirm('是否确认删除告警信息,任务名称为"' + jobNameList + '"的数据项?', "警告", {
@@ -355,23 +355,23 @@ function getJobNameList() {
 
 function getAlarMLogType(type) {
   switch (type) {
-    case 'DINGDING': return '钉钉'
-    case 'CALLBACK_URL': return '自定义回调http'
-    default: return ''
+    case 'DINGDING': return '钉钉' ;
+    case 'CALLBACK_URL': return '自定义回调http' ;
+    default: return '' ;
   }
 }
 
 function getAlarmLogStatus(status) { // 任务状态
   switch (status) {
-    case 'FAIL': return '失败'
-    case 'SUCCESS': return '成功'
-    default: return ''
+    case 'FAIL': return '失败' ;
+    case 'SUCCESS': return '成功' ;
+    default: return '' ;
   }
 }
 
 function getLogErrorInfo(row) {
-  failLog.value = row.failLog
-  dialogFailLogVisible.value = true
+  failLog.value = row.failLog ;
+  dialogFailLogVisible.value = true ;
 }
 
 /** created */

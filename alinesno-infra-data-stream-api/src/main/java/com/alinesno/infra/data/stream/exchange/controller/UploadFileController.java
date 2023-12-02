@@ -80,7 +80,7 @@ public class UploadFileController extends BaseController<UploadFileEntity, IUplo
     }
 
     @PostMapping(value = "/upload")
-    public AjaxResult upload(@RequestParam("file") MultipartFile file) {
+    public AjaxResult upload(MultipartFile file) {
 
         Long operatorId = 0L ;
 //        // 设置用户

@@ -224,9 +224,9 @@ function resetQuery() {
 
 /** 多选框选中数据 */
 function handleSelectionChange(selection) {
-    ids.value = selection.map(item => item.id)
-    single.value = selection.length!==1
-    multiple.value = !selection.length
+    ids.value = selection.map(item => item.id) ;
+    single.value = selection.length!==1 ;
+    multiple.value = !selection.length ;
 }
 
 /** 新增按钮操作 */
@@ -239,7 +239,7 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
     reset();
-    const key = row.id || ids.value
+    const key = row.id || ids.value ;
     getSystemConfig(key).then(response => {
       form.value = response.data;
       open.value = true;
@@ -269,8 +269,8 @@ function handleUpdate(row) {
 /** 提交按钮 */
 function submitForm() {
     proxy.$refs["systemConfigRef"].validate(valid => {
-        if (valid) {
-          if (form.value.id != null) {
+        if ( valid ) {
+          if ( form.value.id != null ) {
             updateSystemConfig(form.value).then(response => {
               proxy.$modal.msgSuccess("修改成功");
               open.value = false;

@@ -288,11 +288,11 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
   reset();
-  const ip = row.id || ids.value
+  const ip = row.id || ids.value ;
   getIpStatus(ip).then(response => {
-    form.value = response.data;
-    open.value = true;
-    title.value = "修改web服务运行ip";
+    form.value = response.data ;
+    open.value = true ;
+    title.value = "修改web服务运行ip" ;
   });
 }
 
@@ -300,7 +300,7 @@ function handleUpdate(row) {
 function submitForm() {
   this.$refs["IpStatusRef"].validate(valid => {
     if (valid) {
-      if (form.value.id != null) {
+      if ( form.value.id != null ) {
         updateIpStatus(form.value).then(response => {
           proxy.$modal.msgSuccess("修改成功");
           open.value = false;

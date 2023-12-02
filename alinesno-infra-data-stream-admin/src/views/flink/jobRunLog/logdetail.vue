@@ -88,44 +88,44 @@ const { form, curParams, cmOptions } = toRefs(data);
 
 onMounted(() => {
   // 在组件挂载后执行的逻辑
-  title.value = proxy.$route.meta.title;
-  const params = proxy.$route.params
-  curParams.value.flag = params.flag
-  curParams.value.context = params.context
-  curParams.value.data = params.data
-  logid.value = params.data.id
-  getLogDetail()
+  title.value = proxy.$route.meta.title ;
+  const params = proxy.$route.params ;
+  curParams.value.flag = params.flag ;
+  curParams.value.context = params.context ;
+  curParams.value.data = params.data ;
+  logid.value = params.data.id ;
+  getLogDetail() ;
 })
 
 
 function handleBack() { // 返回
   if ( curParams.value.flag === 'loglist' ) {
-    proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context })
+    proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context }) ;
   } else if (this.params.flag === 'tasklist') {
-    proxy.$router.replace({ name: 'jobManage', params: curParams.value.context })
+    proxy.$router.replace({ name: 'jobManage', params: curParams.value.context }) ;
   }
 }
 
 function getLogDetail() { // 查询日志详情
-  loading.value = true
+  loading.value = true ;
   logDetail(logid.value).then(response => {
-    loading.value = false
-    const { code, msg, data } = response
+    loading.value = false ;
+    const { code, msg, data } = response ;
     if (code !== 200 ) {
-      proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+      proxy.$modal.msgError(msg || '请求数据异常！') ;
       return
     }
-    form.value = data || {}
+    form.value = data || {} ;
   }).catch(error => {
-    loading.value = false
+    loading.value = false ;
   })
 }
 
 function showClinetJobInfo(){
   getClinetJobInfo().then( res =>{
-    let win;
-    win = window.open();
-    win.document.write (res);
+    let win ;
+    win = window.open() ;
+    win.document.write (res) ;
   }).catch(error => {
   })
 }

@@ -203,8 +203,7 @@ onMounted(() => {
   const params = route.params;
 
   //获取跳转过来时的参数
-  console.log(params.flag);
-  isReadOnly.value = !(params.flag === 'create' || params.flag === 'update')
+  isReadOnly.value = !(params.flag === 'create' || params.flag === 'update') ;
 
   //保存上个界面传进来的标志、查询条件、数据
   curParams.flag = params.flag ;
@@ -233,7 +232,6 @@ onMounted(() => {
 })
 
 function handleBack() { // 返回
-  console.log( curParams.flag) ;
   const routerName = curParams.flag === 'history' ? 'JobHistory' : 'JobManage';
   proxy.$router.replace({ name: routerName, params: {context:curParams.context} });
 }
@@ -241,8 +239,8 @@ function handleBack() { // 返回
 function submitTask() { // 提交修改、新建表单
         proxy.$refs.taskform.validate((valid) => {
         if (valid) {
-          const jobName = form.value.jobName
-          const alarmTypes = form.value.alarmTypes.join(',')
+          const jobName = form.value.jobName ;
+          const alarmTypes = form.value.alarmTypes.join(',') ;
           const data = {
             id: form.value.id,
             jobName: form.value.jobName,
@@ -257,68 +255,68 @@ function submitTask() { // 提交修改、新建表单
             extJarPath: form.value.extJarPath,
             creator: form.value.creator,
             operatorId: form.value.creator
-          }
+          } ;
           if ( !form.value.id &&  curParams.flag === 'create'  ) {
             addConfig(data).then(response => {
-              loading.value = false
-              const { code, data, msg } = response
+              loading.value = false ;
+              const { code, data, msg } = response ;
               if (code !== 200 ) {
-                proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+                proxy.$modal.msgError(msg || '请求数据异常！');
                 return
               }
-              proxy.$modal.$message({ type: 'success', message: `新增任务[${jobName}]成功！` })
-              this.$refs.backbutton.click()
+              proxy.$modal.msgSuccess(`新增任务[${jobName}]成功！`);
+              this.$refs.backbutton.click() ;
             }).catch(error => {
-              loading.value = false
+              loading.value = false ;
             })
           } else if ( form.value.id && curParams.flag === 'update' ) {
             editConfig(data).then(response => {
-              loading.value = false
-              const { code, data, msg } = response
+              loading.value = false ;
+              const { code, data, msg } = response ;
               if (code !== 200 ) {
-                proxy.$modal.$message({ type: 'error', message: (msg || '请求数据异常！') })
+                proxy.$modal.msgError("没有找到需要修改的数据!");
                 return
               }
-              proxy.$modal.$message({ type: 'success', message: `修改任务[${jobName}]成功！` })
-              this.$refs.backbutton.click()
+              proxy.$modal.msgSuccess(`修改任务[${jobName}]成功！`);
+              this.$refs.backbutton.click() ;
             }).catch(error => {
-              loading.value = false
+              loading.value = false ;
             })
           }
         } else {
-          return false
+          return false ;
         }
       })
 }
 
 function formatDateTime(date) {
-      return proxy.dayjs(date).format('YYYY-MM-DD HH:mm:ss')
+      return proxy.dayjs(date).format('YYYY-MM-DD HH:mm:ss') ;
 }
 
 function getStatusDesc(status) { // 任务状态
       switch (status) {
-        case -2: return '未知'
-        case -1: return '失败'
-        case 0: return '停止'
-        case 1: return '运行中'
-        case 2: return '启动中'
-        case 3: return '提交成功'
-        case 'UNKNOWN': return '未知'
-        case 'FAIL': return '失败'
-        case 'STOP': return '停止'
-        case 'RUN': return '运行中'
-        case 'STARTING': return '启动中'
-        case 'SUCCESS': return '提交成功'
-        default: return status + '　'
+        case -2: return '未知' ;
+        case -1: return '失败' ;
+        case 0: return '停止' ;
+        case 1: return '运行中' ;
+        case 2: return '启动中' ;
+        case 3: return '提交成功' ;
+        case 'UNKNOWN': return '未知' ;
+        case 'FAIL': return '失败' ;
+        case 'STOP': return '停止' ;
+        case 'RUN': return '运行中' ;
+        case 'STARTING': return '启动中' ;
+        case 'SUCCESS': return '提交成功' ;
+        default: return status + '　' ;
       }
 }
 
 function getJobType(jobTypeEnum) {
       switch (jobTypeEnum) {
-        case 'SQL_STREAMING': return 0
-        case 'SQL_BATCH': return 2
-        case 'JAR': return 1
-        default: return jobTypeEnum
+        case 'SQL_STREAMING': return 0 ;
+        case 'SQL_BATCH': return 2 ;
+        case 'JAR': return 1 ;
+        default: return jobTypeEnum ;
       }
 }
 

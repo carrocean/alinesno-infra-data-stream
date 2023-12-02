@@ -300,38 +300,38 @@ onMounted(() => {
   showLinkTitle.value = false ;
   getJobNameList();
   if (proxy.$route.name === 'jobRunLog') {
-    const params = proxy.$route.params
+    const params = proxy.$route.params ;
     if (params) {
       queryParams.value.jobId = (params.jobId) ? params.jobId : '';
       queryParams.value.jobConfigId = (params.jobConfigId) ? params.jobConfigId : '';
       queryParams.value.jobName = (params.jobName) ? params.jobName : '';
       if (params.currentPage) { // 恢复分页状态
-        count.value = params.count
-        currentPage.value = params.currentPage
-        pageSize.value = params.pageSize
+        count.value = params.count ;
+        currentPage.value = params.currentPage ;
+        pageSize.value = params.pageSize ;
       }
       if (params.flag === 'tasklist') { // 保存由任务列表跳转过来的状态
-        backFlag.value = true
-        curParams.value.flag = params.flag
-        curParams.value.data = params.data
-        curParams.value.context = params.context
+        backFlag.value = true ;
+        curParams.value.flag = params.flag ;
+        curParams.value.data = params.data ;
+        curParams.value.context = params.context ;
         showLinkTitle.value = true ;
       }
       if (params.parentContent) { // 详情回退后，保存继续回退到任务列表的状态
-        backFlag.value = true
-        curParams.value.context = params.parentContent
+        backFlag.value = true ;
+        curParams.value.context = params.parentContent ;
       }
     }
   };
-  handleQuery()
+  handleQuery() ;
 })
 
 
 function handleBack() { // 返回
   if (curParams.value.flag === 'loglist') {
-    proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context })
+    proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context }) ;
   } else if (curParams.value.flag === 'tasklist') {
-    proxy.$router.replace({ name: 'jobManage', params: curParams.value.context })
+    proxy.$router.replace({ name: 'jobManage', params: curParams.value.context }) ;
   }
 }
 
@@ -401,7 +401,7 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
   reset();
-  const jobConfigId = row.id || ids.value
+  const jobConfigId = row.id || ids.value;
   getJobRunLog(jobConfigId).then(response => {
     form.value = response.data;
     open.value = true;
@@ -432,11 +432,11 @@ function submitForm() {
 
 /** 删除按钮操作 */
 function handleDelete(row) {
-  const jobConfigIds = row.id || ids.value;
-  let jobNameList = row.jobName || jobNames.value;
+  const jobConfigIds = row.id || ids.value ;
+  let jobNameList = row.jobName || jobNames.value ;
   //避免弹出窗数据太长，只显示前15条数据
-  if ( jobNameList.length > 15 ) {
-    jobNameList = jobNameList.slice(0,15);
+  if ( Array.isArray(jobNameList) && jobNameList.length > 15 ) {
+    jobNameList = jobNameList.slice(0,15) ;
   }
 
   proxy.$modal.$confirm('是否确认删除运行任务日志，任务名称为"' + jobNameList + '"的数据项?', "警告", {
@@ -444,10 +444,10 @@ function handleDelete(row) {
       cancelButtonText: "取消",
       type: "warning"
     }).then(function() {
-      return delJobRunLog(jobConfigIds);
+      return delJobRunLog(jobConfigIds) ;
     }).then(() => {
-      getList();
-      proxy.$modal.msgSuccess("删除成功");
+      getList() ;
+      proxy.$modal.msgSuccess("删除成功") ;
     }).catch(error => {
 
     })
@@ -456,7 +456,7 @@ function handleDelete(row) {
 /** 状态修改 **/
 function handleStatusChange(row) {
   return changeStatusJobRunLog(row.id, row.status).then(response=>{
-    if(response.code == 200){
+    if( response.code == 200 ){
       proxy.$modal.msgSuccess("操作成功");
     }
   });
@@ -465,7 +465,7 @@ function handleStatusChange(row) {
 /** 修改字段状态 **/
 function chanageFile(value , filed , id){
   return changeJobRunLogField(value , filed , id).then(response =>{
-    if(response.code == 200){
+    if( response.code == 200 ){
       proxy.$modal.msgSuccess("操作成功");
     }
   }) ;
@@ -473,41 +473,41 @@ function chanageFile(value , filed , id){
 
 /** 导出按钮操作 */
 function handleExport() {
-  const queryParams = queryParams.value;
+  const queryParams = queryParams.value ;
   proxy.$modal.$confirm('是否确认导出所有运行任务日志数据项?', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"
     }).then(function() {
-      return exportJobRunLog(queryParams);
+      return exportJobRunLog(queryParams) ;
     }).then(response => {
-      proxy.download(response.msg);
+      proxy.download(response.msg) ;
     })
 }
 
 //增加任务清单下拉框功能
 function getJobNameList() {
-  searchParamTem.value = searchParam(ParamsConfigTem.value, ParamsTem.value);
+  searchParamTem.value = searchParam(ParamsConfigTem.value, ParamsTem.value) ;
   listJobConfig(searchParamTem.value).then(response => {
-    JobNameList.value = response.rows;
+    JobNameList.value = response.rows ;
   });
 }
 
 function getStatusDesc(status) { // 任务状态
   switch (status) {
-    case -2: return '未知'
-    case -1: return '失败'
-    case 0: return '停止'
-    case 1: return '运行中'
-    case 2: return '启动中'
-    case 3: return '提交成功'
-    case 'UNKNOWN': return '未知'
-    case 'FAIL': return '失败'
-    case 'STOP': return '停止'
-    case 'RUN': return '运行中'
-    case 'STARTING': return '启动中'
-    case 'SUCCESS': return '提交成功'
-    default: return ''
+    case -2: return '未知' ;
+    case -1: return '失败' ;
+    case 0: return '停止' ;
+    case 1: return '运行中' ;
+    case 2: return '启动中' ;
+    case 3: return '提交成功' ;
+    case 'UNKNOWN': return '未知' ;
+    case 'FAIL': return '失败' ;
+    case 'STOP': return '停止' ;
+    case 'RUN': return '运行中' ;
+    case 'STARTING': return '启动中' ;
+    case 'SUCCESS': return '提交成功' ;
+    default: return '' ;
   }
 }
 
@@ -525,7 +525,7 @@ function queryContent() {
 
 function timefilters(val) {
   if (val === null || val === '') {
-    return '暂无时间';
+    return '暂无时间' ;
   }
   const d = new Date(val); // val 为表格内取到的后台时间
   const month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
