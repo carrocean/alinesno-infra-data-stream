@@ -128,8 +128,8 @@ public class JobRunLogDTO implements Serializable {
     jobRunLogDTO.setJobStatus(jobRunLog.getJobStatus());
     jobRunLogDTO.setCreateTime(jobRunLog.getAddTime());
     jobRunLogDTO.setEditTime(jobRunLog.getUpdateTime());
-    jobRunLogDTO.setCreator(jobRunLog.getOperatorId());
-    jobRunLogDTO.setEditor(jobRunLog.getLastUpdateOperatorId());
+    jobRunLogDTO.setCreator( jobRunLog.getOperatorId() == null ? 0l : jobRunLog.getOperatorId() );
+    jobRunLogDTO.setEditor( jobRunLog.getOperatorId() == null ? 0l : jobRunLog.getOperatorId() );
     jobRunLogDTO.setLocalLog(jobRunLog.getLocalLog());
     jobRunLogDTO.setRunIp(jobRunLog.getRunIp());
     return jobRunLogDTO;

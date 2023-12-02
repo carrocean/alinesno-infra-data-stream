@@ -101,7 +101,7 @@
 <!--          <span>{{ parseDatetime(scope.row.addTime) }}</span>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-      <el-table-column label="操作" width="80" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" width="100" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
 <!--          <el-button-->
 <!--            size="mini"-->
@@ -371,7 +371,7 @@ function handleDelete(row) {
     jobNameList = jobNameList.slice(0,15);
   }
 
-  proxy.$modal.$confirm('是否确认删除任务名称为"' + jobNameList + '"的备份记录?请在删除前到服务器删除对应的备份文件!', "警告", {
+  proxy.$confirm('是否确认删除任务名称为"' + jobNameList + '"的备份记录?请在删除前到服务器删除对应的备份文件!', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"
@@ -406,7 +406,7 @@ function chanageFile(value , filed , id){
 /** 导出按钮操作 */
 function handleExport() {
   const queryParams = this.queryParams;
-  proxy.$modal.$confirm('是否确认导出所有savepoint备份地址数据项?', "警告", {
+  proxy.$confirm('是否确认导出所有savepoint备份地址数据项?', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"

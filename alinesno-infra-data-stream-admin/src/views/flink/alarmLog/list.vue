@@ -26,9 +26,9 @@
         <el-select  v-model="queryParams.status" placeholder="请选择状态"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
             v-for="item in logStatusOptions"
-            :key="item.key"
+            :key="item.value"
             :label="item.label"
-            :value="item.key">
+            :value="item.value">
           </el-option>
         </el-select>
       </el-form-item>
@@ -61,7 +61,7 @@
         </template>
       </el-table-column>
       <el-table-column label="消息内容" align="left" prop="message" show-overflow-tooltip />
-      <el-table-column prop="alarmLogStatusEnum" label="状态" width="65" align="center">
+      <el-table-column prop="alarmLogStatusEnum" label="状态" width="80" align="center">
         <template  #default="scope">
           <el-tag v-if="scope.row.alarmLogStatusEnum==='FAIL'" type="danger" size="mini">{{ getAlarmLogStatus(scope.row.alarmLogStatusEnum) }}</el-tag>
           <el-tag v-else-if="scope.row.alarmLogStatusEnum==='SUCCESS'" type="success" size="mini">{{ getAlarmLogStatus(scope.row.alarmLogStatusEnum) }}</el-tag>
@@ -70,10 +70,10 @@
       </el-table-column>
       <el-table-column label="告警时间" align="center" prop="editTime"  width="170">
         <template  #default="scope">
-          <span>{{ parseDatetime(scope.row.editTime) }}</span>
+          <span>{{ parseTime(scope.row.editTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="120" align="left" class-name="small-padding fixed-width" v-if="!isHome">
+      <el-table-column label="操作" width="180" align="left" class-name="small-padding fixed-width" v-if="!isHome">
         <template  #default="scope">
           <el-button
             size="mini"
@@ -120,6 +120,7 @@ import {
 import  searchParam  from "@/api/Search/searchform";
 import  Condition  from "@/api/Search/Condition";
 import {listJobConfig} from "@/api/flink/JobConfig";
+import {parseTime} from "@/utils/ruoyi";
 
 const { proxy } = getCurrentInstance();
 
@@ -197,7 +198,7 @@ const data = reactive({
     jobName: Condition.like(),
     message: Condition.like(),
     type: Condition.like(),
-    status: Condition.like(),
+    status: Condition.eq(),
     failLog: Condition.like(),
   },
 

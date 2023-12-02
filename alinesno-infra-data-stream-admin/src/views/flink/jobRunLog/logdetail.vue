@@ -2,7 +2,7 @@
   <div v-loading="loading" class="fl-logdetail-container">
     <el-page-header @back="handleBack()"  :content=title  class="back"></el-page-header>
     <el-card shadow="false" class="box-card" style="margin-top: 20px;">
-    <el-form ref="form" :model="form" :disabled="false" label-width="70px"  class="fl-log">
+    <el-form ref="logForm" :model="form" :disabled="false" label-width="70px"  class="fl-log">
       <el-row>
         <el-col :span="10">
           <el-form-item label="运行状态" prop="jobStatus">
@@ -11,7 +11,6 @@
         </el-col>
         <el-col :span="14">
           <el-form-item label="Flink客户端日志" prop="clinetJobUrl" label-width="120px">
-<!--            <el-link type="primary" target="_blank" :href="form.clinetJobUrl" :underline="false">{{ form.clinetJobUrl }}</el-link>-->
             <el-link type="primary" target="_blank"  @click="showClinetJobInfo()"   :underline="false">查看日志</el-link>
           </el-form-item>
         </el-col>
@@ -31,7 +30,8 @@
       <el-row>
         <el-col :span="24">
           <el-form-item label="日志内容" prop="localLog">
-            <codemirror ref="cm" :value="form.localLog" :options="cmOptions" class="fl-codemirror" />
+            <el-input v-model="form.localLog" type="textarea" :autosize="{minRows:5}"  id="localLog" disabled />
+<!--            <codemirror ref="cm" :value="form.localLog" :options="cmOptions" class="fl-codemirror" />-->
           </el-form-item>
         </el-col>
       </el-row>
@@ -48,11 +48,12 @@
 </template>
 
 <script  setup  name="LogDetail">
-import { CodeMirror, codemirror } from 'vue-codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/shell/shell.js'
+// import { CodeMirror, codemirror } from 'vue-codemirror'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/mode/shell/shell.js'
 import { logDetail,getClinetJobInfo } from '@/api/flink/JobRunLog'
 import {onMounted} from "vue";
+import { useRouter, useRoute } from 'vue-router';
 
 const { proxy } = getCurrentInstance();
 
@@ -63,7 +64,21 @@ const title = ref("");
 const logid = ref("");
 
 const data = reactive({
-  form: {},
+  form: {
+    // id : null,
+    // jobConfigId : null,
+    // jobId : null,
+    // jobName : null,
+    // jobStatus : null,
+    // localLog : null,
+    // remoteLogUrl : null,
+    // deployMode : null,
+    // clinetJobUrl : null,
+    // createTime : null,
+    // editTime : null,
+    // startTime : null,
+    // endTime : null
+  },
 
   curParams: {
     flag: '',
@@ -87,22 +102,30 @@ const data = reactive({
 const { form, curParams, cmOptions } = toRefs(data);
 
 onMounted(() => {
+  //在组件挂载后执行的逻辑
+  //获取当前路由
+  let route = useRoute();
   // 在组件挂载后执行的逻辑
-  title.value = proxy.$route.meta.title ;
-  const params = proxy.$route.params ;
-  curParams.value.flag = params.flag ;
-  curParams.value.context = params.context ;
-  curParams.value.data = params.data ;
-  logid.value = params.data.id ;
+  //获取当前路由的标题
+  title.value = route.meta.title;
+  const params = route.params;
+  //保存上个界面传进来的标志、查询条件、数据
+  curParams.flag = params.flag ;
+  curParams.context = params.context ;
+  curParams.data    = JSON.parse(params.data) ;
+  curParams.data    = params.data ;
+
+
+  logid.value = curParams.data ;
   getLogDetail() ;
 })
 
 
 function handleBack() { // 返回
-  if ( curParams.value.flag === 'loglist' ) {
-    proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context }) ;
-  } else if (this.params.flag === 'tasklist') {
-    proxy.$router.replace({ name: 'jobManage', params: curParams.value.context }) ;
+  if ( curParams.flag === 'loglist' ) {
+    proxy.$router.replace({ name: 'JobRunLog' }) ;
+  } else if (curParams.flag === 'tasklist') {
+    proxy.$router.replace({ name: 'JobManage', params: curParams.context }) ;
   }
 }
 
@@ -115,6 +138,7 @@ function getLogDetail() { // 查询日志详情
       proxy.$modal.msgError(msg || '请求数据异常！') ;
       return
     }
+
     form.value = data || {} ;
   }).catch(error => {
     loading.value = false ;

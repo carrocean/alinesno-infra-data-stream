@@ -76,7 +76,6 @@ public class JobRunLogController extends BaseController<JobRunLogEntity, IJobRun
     /**
      * 查询日志详情
      *
-     * @param modelMap
      * @param logid
      * @return
      * @author wxj
@@ -84,7 +83,7 @@ public class JobRunLogController extends BaseController<JobRunLogEntity, IJobRun
      * @version V1.0
      */
     @RequestMapping(value = "/logDetail", method = {RequestMethod.POST})
-    public AjaxResult sysConfig(ModelMap modelMap, Long logid) {
+    public AjaxResult sysConfig(Long logid) {
         JobRunLogVO vo = JobRunLogVO
                 .toVO(service.getDetailLogById(logid), YN.Y.getCode(), customConfig.getWebPort());
         return AjaxResult.success(vo);

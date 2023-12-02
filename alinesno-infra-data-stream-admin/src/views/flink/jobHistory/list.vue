@@ -363,9 +363,9 @@ onMounted(() => {
 
 function handleBack() { // 返回
       if ( curParams.value.flag === 'loglist' ) {
-        proxy.$router.replace({ name: 'jobRunLog', params: curParams.value.context }) ;
-      } else if (this.params.flag === 'tasklist') {
-        proxy.$router.replace({ name: 'jobManage', params: curParams.value.context }) ;
+        proxy.$router.replace({ name: 'JobRunLog', params: curParams.value.context }) ;
+      } else if ( curParams.value.flag === 'tasklist' ) {
+        proxy.$router.replace({ name: 'JobManage', params: curParams.value.context }) ;
       }
 }
 

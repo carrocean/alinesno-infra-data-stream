@@ -22,10 +22,10 @@
       <el-form-item label="任务状态" prop="jobStatus">
         <el-select  v-model="queryParams.jobStatus" placeholder="任务状态"  clearable  filterable  @keyup.enter.native="handleQuery">
           <el-option
-            v-for="item in jobStatuss"
-            :key="item.key"
+            v-for="item in jobStatusList"
+            :key="item.value"
             :label="item.label"
-            :value="item.key">
+            :value="item.value">
           </el-option>
         </el-select>
       </el-form-item>
@@ -63,7 +63,7 @@
       <el-table-column label="任务名称" align="left" prop="jobName" />
       <el-table-column label="运行模式" align="left" prop="deployMode" />
       <el-table-column label="Flink任务Id" align="left" prop="jobId" />
-      <el-table-column label="任务状态" align="left" prop="job_status" width="80" >
+      <el-table-column label="任务状态" align="left" prop="jobStatus" width="80px"  >
         <template  #default="scope">
           <el-tag v-if="scope.row.jobStatus===-2||scope.row.jobStatus==='UNKNOWN'" type="info" size="mini">{{ getStatusDesc(scope.row.jobStatus) }}</el-tag>
           <el-tag v-else-if="scope.row.jobStatus===-1||scope.row.jobStatus==='FAIL'" type="danger" size="mini">{{ getStatusDesc(scope.row.jobStatus) }}</el-tag>
@@ -76,19 +76,18 @@
       </el-table-column>
       <el-table-column label="启动时间" align="left" prop="startTime" width="170">
         <template  #default="scope">
-<!--          <span>{{ parseTime(scope.row.startTime) }}</span>-->
-          <span>{{  scope.row.startTime | timefilters }}</span>
+          <span>{{ parseTime(scope.row.startTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="结束时间" align="left" prop="endTime" width="170">
         <template  #default="scope">
-<!--          <span>{{ parseTime(scope.row.endTime) }}</span>-->
-          <span>{{  scope.row.endTime | timefilters }}</span>
+          <span>{{ parseTime(scope.row.endTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="110" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" width="160" align="center" class-name="small-padding fixed-width">
         <template  #default="scope">
-          <router-link :to="{name:'ViewTaskLogDetail', params:{flag:'loglist', context:queryContent(), data:scope.row}}" >
+<!--          <router-link :to="{name:'ViewTaskLogDetail', params:{flag:'loglist', context:queryContent(),  data:getRowData(scope.row)}}" >-->
+          <router-link :to="{name:'ViewTaskLogDetail', params:{flag:'loglist', context:queryContent(),  data:scope.row.id}}" >
             <el-link style="margin-right: 5px" :underline="false">
               <el-button
                 type="text"
@@ -189,7 +188,7 @@ const currentPage = ref(0);
 const pageSize = ref(0);
 
 //任务状态
-const jobStatuss= ref([
+const jobStatusList= ref([
   { value: "UNKNOWN", label: "未知" },
   { value: "FAIL", label: "失败" },
   { value: "STOP", label: "停止" },
@@ -231,7 +230,7 @@ const data = reactive({
     remoteLogUrl: Condition.like(),
     startTime: Condition.eq(),
     endTime: Condition.eq(),
-    jobStatus: Condition.like(),
+    jobStatus: Condition.eq(),
   },
 
   // 表单校验
@@ -325,6 +324,10 @@ onMounted(() => {
   };
   handleQuery() ;
 })
+
+function getRowData(rowData){
+  return  JSON.stringify(rowData);
+}
 
 
 function handleBack() { // 返回
@@ -439,7 +442,7 @@ function handleDelete(row) {
     jobNameList = jobNameList.slice(0,15) ;
   }
 
-  proxy.$modal.$confirm('是否确认删除运行任务日志，任务名称为"' + jobNameList + '"的数据项?', "警告", {
+  proxy.$confirm('是否确认删除运行任务日志，任务名称为"' + jobNameList + '"的数据项?', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"
@@ -474,7 +477,7 @@ function chanageFile(value , filed , id){
 /** 导出按钮操作 */
 function handleExport() {
   const queryParams = queryParams.value ;
-  proxy.$modal.$confirm('是否确认导出所有运行任务日志数据项?', "警告", {
+  proxy.$confirm('是否确认导出所有运行任务日志数据项?', "警告", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning"
@@ -495,12 +498,12 @@ function getJobNameList() {
 
 function getStatusDesc(status) { // 任务状态
   switch (status) {
-    case -2: return '未知' ;
-    case -1: return '失败' ;
-    case 0: return '停止' ;
-    case 1: return '运行中' ;
-    case 2: return '启动中' ;
-    case 3: return '提交成功' ;
+    case '-2' : return '未知' ;
+    case '-1': return '失败' ;
+    case '0': return '停止' ;
+    case '1': return '运行中' ;
+    case '2': return '启动中' ;
+    case '3': return '提交成功' ;
     case 'UNKNOWN': return '未知' ;
     case 'FAIL': return '失败' ;
     case 'STOP': return '停止' ;
@@ -512,30 +515,20 @@ function getStatusDesc(status) { // 任务状态
 }
 
 function queryContent() {
-  return {
-    count: count.value,
-    currentPage: currentPage.value,
-    pageSize: pageSize.value,
-    jobId: queryParams.value.jobId,
-    jobConfigId: queryParams.value.jobConfigId,
-    jobName: queryParams.value.jobName,
-    parentContent: curParams.value.context
-  }
+  // return {
+  //   count: count.value,
+  //   currentPage: currentPage.value,
+  //   pageSize: pageSize.value,
+  //   jobId: queryParams.value.jobId,
+  //   jobConfigId: queryParams.value.jobConfigId,
+  //   jobName: queryParams.value.jobName,
+  //   parentContent: curParams.value.context
+  // }
+  let content = {} ;
+  return  JSON.stringify(content);
 }
 
-function timefilters(val) {
-  if (val === null || val === '') {
-    return '暂无时间' ;
-  }
-  const d = new Date(val); // val 为表格内取到的后台时间
-  const month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
-  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
-  const hours = d.getHours() < 10 ? `0${d.getHours()}` : d.getHours();
-  const min = d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes();
-  const sec = d.getSeconds() < 10 ? `0${d.getSeconds()}` : d.getSeconds();
-  const times = `${d.getFullYear()}-${month}-${day} ${hours}:${min}:${sec}`;
-  return times;
-}
+
 
 /** created */
 // 查询公共状态

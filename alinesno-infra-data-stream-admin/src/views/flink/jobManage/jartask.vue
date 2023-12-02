@@ -85,7 +85,7 @@
         </el-col>
         <el-col :span="3">
           <el-form-item >
-              <span slot="label"> <a href="/flink/flink/jarFile/list" style="color: red" target="_blank">二方库管理</a></span>
+              <span slot="label"> <a href="/system/flink/jarFile/list" style="color: red" target="_blank">二方库管理</a></span>
           </el-form-item>
         </el-col>
       </el-row>

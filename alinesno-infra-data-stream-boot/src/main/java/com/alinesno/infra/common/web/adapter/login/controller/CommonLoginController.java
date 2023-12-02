@@ -126,7 +126,7 @@ public class CommonLoginController {
 
     /**
      * 获取路由信息
-     * G:\lgb-work\lad\new\alinesno-infra-data-stream\alinesno-infra-data-stream-admin\src\views\flink\systemConfig\list.vue
+     * \alinesno-infra-data-stream\alinesno-infra-data-stream-admin\src\views\flink\systemConfig\list.vue
      * @return 路由信息
      */
     @GetMapping("getRouters")
@@ -144,6 +144,8 @@ public class CommonLoginController {
                 new Menu("AlarmLog", "flink/alarmLog/list", false, false , "flink/alarmLog/list", new Menu.Meta("告警日志", "peoples", false, null)),
                 new Menu("SavepointBackup", "flink/savepointBackup/list", false, false , "flink/savepointBackup/list", new Menu.Meta("保存点", "peoples", false, null)),
                 new Menu("JobHistory", "flink/jobHistory/list", false, false , "flink/jobHistory/list/:flag?/:context?/:jobConfigId?", new Menu.Meta("任务历史", "peoples", false, null)),
+
+                new Menu("ViewTaskLogDetail", "flink/jobRunLog/logdetail", true, false , "flink/jobRunLog/logdetail/:flag?/:context?/:data?", new Menu.Meta("查看日志详情", "peoples", false, null)),
 
                 new Menu("CreateSqlStreamingTask", "flink/jobManage/sqltask", true, false , "flink/jobManage/sqltask/:flag?/:context?/:data?", new Menu.Meta("创建SQL流任务", "peoples", false, null)),
                 new Menu("UpdateSqlStreamingTask", "flink/jobManage/sqltask", true, false , "flink/jobManage/sqltask/:flag?/:context?/:data?", new Menu.Meta("编辑SQL流任务", "peoples", false, null)),

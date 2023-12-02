@@ -290,7 +290,7 @@ function submitForm() {
 /** 删除按钮操作 */
 function handleDelete(row) {
     const keys = row.id || ids.value;
-    proxy.$modal.$confirm('是否确认删除系统配置编号为"' + keys + '"的数据项?', "警告", {
+    proxy.$confirm('是否确认删除系统配置编号为"' + keys + '"的数据项?', "警告", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -324,7 +324,7 @@ function chanageFile(value , filed , id){
 /** 导出按钮操作 */
 function handleExport() {
       const queryParams = queryParams.value;
-      proxy.$modal.$confirm('是否确认导出所有系统配置数据项?', "警告", {
+      proxy.$confirm('是否确认导出所有系统配置数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
