@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.AlartLogMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.AlartLogMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.AlartLogEntity" id="AlartLogResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.AlartLogEntity" id="AlartLogResult">
                     <result property="jobConfigId" column="job_config_id"/>
                     <result property="jobName" column="job_name"/>
                     <result property="message" column="message"/>

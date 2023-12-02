@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.JobConfigMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.JobConfigMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.JobConfigEntity" id="JobConfigResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.JobConfigEntity" id="JobConfigResult">
                     <result property="jobName" column="job_name"/>
                     <result property="jobDesc" column="job_desc"/>
                     <result property="deployMode" column="deploy_mode"/>
@@ -42,7 +42,7 @@
 <!--        </if>-->
     </select>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.alinesno.infra.data.stream.entity.JobConfigEntity">
         select
           *
         from job_config
@@ -50,7 +50,7 @@
           and has_delete=0
     </select>
 
-    <select id="selectByPrimaryKeyContainDelete" parameterType="java.lang.String" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+    <select id="selectByPrimaryKeyContainDelete" parameterType="java.lang.String" resultType="com.alinesno.infra.data.stream.entity.JobConfigEntity">
         select
           *
         from job_config
@@ -58,7 +58,7 @@
     </select>
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+    <update id="updateByPrimaryKeySelective" parameterType="com.alinesno.infra.data.stream.entity.JobConfigEntity">
         update job_config
         <set>
             version = version + 1,
@@ -143,8 +143,8 @@
           and version=#{oldVersion,jdbcType=INTEGER}
     </update>
 
-    <select id="findJobConfig" parameterType="com.alinesno.infra.data.flink.exchange.param.JobConfigParam"
-            resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+    <select id="findJobConfig" parameterType="com.alinesno.infra.data.stream.exchange.param.JobConfigParam"
+            resultType="com.alinesno.infra.data.stream.entity.JobConfigEntity">
         select
            *
         from job_config
@@ -204,7 +204,7 @@
    </update>
 
 
-    <select id="findJobConfigByStatus" resultType="com.alinesno.infra.data.flink.entity.JobConfigEntity">
+    <select id="findJobConfigByStatus" resultType="com.alinesno.infra.data.stream.entity.JobConfigEntity">
         select
           *
         from job_config
@@ -219,7 +219,7 @@
         </if>
     </select>
 
-    <select id="getAllBatchJobs" resultType="com.alinesno.infra.data.flink.entity.BatchJob">
+    <select id="getAllBatchJobs" resultType="com.alinesno.infra.data.stream.entity.BatchJob">
     select id, job_name, cron
     from job_config
     where is_open = 1
@@ -232,7 +232,7 @@
       </if>
   </select>
 
-    <select id="jobTypeCnt" resultType="com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount">
+    <select id="jobTypeCnt" resultType="com.alinesno.infra.data.stream.exchange.vo.jobTypeRunCount">
         SELECT
             a.jobType,
             a.jobTypeName,
@@ -251,7 +251,7 @@
         ) b ON a.jobType = b.jobType
     </select>
 
-    <select id="JobStatusStat" resultType="com.alinesno.infra.data.flink.exchange.vo.JobStatusStatVO">
+    <select id="JobStatusStat" resultType="com.alinesno.infra.data.stream.exchange.vo.JobStatusStatVO">
         select
               a.status
              ,a.statusLabel

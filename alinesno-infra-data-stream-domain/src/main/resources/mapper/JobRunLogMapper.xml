@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.JobRunLogMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.JobRunLogMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.JobRunLogEntity" id="JobRunLogResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.JobRunLogEntity" id="JobRunLogResult">
                     <result property="jobConfigId" column="job_config_id"/>
                     <result property="jobName" column="job_name"/>
                     <result property="jobDesc" column="job_desc"/>
@@ -18,7 +18,7 @@
                     <result property="jobStatus" column="job_status"/>
     </resultMap>
 
-    <update id="update" parameterType="com.alinesno.infra.data.flink.entity.JobRunLogEntity">
+    <update id="update" parameterType="com.alinesno.infra.data.stream.entity.JobRunLogEntity">
         update job_run_log
         <set>
             <if test="remoteLogUrl != null">
@@ -49,7 +49,7 @@
      where job_config_id = #{jobConfigId}
   </update>
 
-    <select id="jobTypeRunCnt" resultType="com.alinesno.infra.data.flink.exchange.vo.jobTypeRunCount">
+    <select id="jobTypeRunCnt" resultType="com.alinesno.infra.data.stream.exchange.vo.jobTypeRunCount">
         select
               job_type jobType
              ,case when job_type = 0 then "SQL流任务"
@@ -78,7 +78,7 @@
         ) a
     </select>
 
-    <select id="JobRunStatDay" resultType="com.alinesno.infra.data.flink.exchange.vo.JobRunStatDayVO">
+    <select id="JobRunStatDay" resultType="com.alinesno.infra.data.stream.exchange.vo.JobRunStatDayVO">
         select
              a.curDay
             ,ifnull(b.jobTotalCount,0)     jobTotalCount
@@ -108,7 +108,7 @@
         where 1=1 order by a.curDay
     </select>
 
-    <select id="JobRunStat" resultType="com.alinesno.infra.data.flink.exchange.vo.JobRunStatVO">
+    <select id="JobRunStat" resultType="com.alinesno.infra.data.stream.exchange.vo.JobRunStatVO">
         select
              date_format(now(),"%Y-%m-%d")   as curDay
             ,b.job_type

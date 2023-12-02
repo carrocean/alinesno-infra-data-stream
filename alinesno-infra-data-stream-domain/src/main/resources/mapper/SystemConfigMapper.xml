@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.SystemConfigMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.SystemConfigMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.SystemConfigEntity" id="SystemConfigResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.SystemConfigEntity" id="SystemConfigResult">
                     <result property="sysKey" column="sys_key"/>
                     <result property="sysVal" column="sys_val"/>
                     <result property="sysType" column="sys_type"/>
     </resultMap>
 
-    <select id="selectAllConfig" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+    <select id="selectAllConfig" parameterType="com.alinesno.infra.data.stream.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.stream.entity.SystemConfigEntity">
         select
           *
         from system_config
@@ -28,7 +28,7 @@
     </select>
 
 
-    <select id="selectConfigByKey" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+    <select id="selectConfigByKey" parameterType="com.alinesno.infra.data.stream.entity.SystemConfigEntity" resultType="com.alinesno.infra.data.stream.entity.SystemConfigEntity">
         select
           *
         from system_config
@@ -42,7 +42,7 @@
     </select>
 
 
-    <update id="updateByKey" parameterType="com.alinesno.infra.data.flink.entity.SystemConfigEntity">
+    <update id="updateByKey" parameterType="com.alinesno.infra.data.stream.entity.SystemConfigEntity">
         update system_config
         <set>
             <if test="sysVal != null">

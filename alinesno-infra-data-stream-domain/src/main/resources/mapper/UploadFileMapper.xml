@@ -2,22 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.UploadFileMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.UploadFileMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.UploadFileEntity" id="UploadFileResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.UploadFileEntity" id="UploadFileResult">
                     <result property="fileName" column="file_name"/>
                     <result property="filePath" column="file_path"/>
                     <result property="type" column="type"/>
     </resultMap>
 
-    <select id="getFileByName"  resultType="com.alinesno.infra.data.flink.entity.UploadFileEntity">
+    <select id="getFileByName"  resultType="com.alinesno.infra.data.stream.entity.UploadFileEntity">
         select
            *
         from upload_file
         where has_delete=0 and file_name=#{fileName,jdbcType=VARCHAR}
     </select>
 
-    <select id="getFileById"  resultType="com.alinesno.infra.data.flink.entity.UploadFileEntity">
+    <select id="getFileById"  resultType="com.alinesno.infra.data.stream.entity.UploadFileEntity">
         select
            *
         from upload_file

@@ -27,7 +27,7 @@
     <logger name="com.alinesno.infra" level="DEBUG" />
 
     <!-- 使用kafka队列配置 -->
-    <appender name="ALINESNO-CLOUD-WATCHER" class="com.alinesno.infra.data.flink.core.flink.KafkaAppender">
+    <appender name="ALINESNO-CLOUD-WATCHER" class="com.alinesno.infra.data.stream.core.flink.KafkaAppender">
         <appName>${watcher.appName}</appName>
         <kafkaHosts>${watcher.kafkaServers}</kafkaHosts>
         <env>${watcher.env}</env>

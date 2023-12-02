@@ -2,22 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.SavepointBackupMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.SavepointBackupMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.SavepointBackupEntity" id="SavepointBackupResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.SavepointBackupEntity" id="SavepointBackupResult">
                     <result property="jobConfigId" column="job_config_id"/>
                     <result property="savepointPath" column="savepoint_path"/>
                     <result property="backupTime" column="backup_time"/>
     </resultMap>
 
-    <select id="getSavepointBackupById"  resultType="com.alinesno.infra.data.flink.entity.SavepointBackupEntity">
+    <select id="getSavepointBackupById"  resultType="com.alinesno.infra.data.stream.entity.SavepointBackupEntity">
         select
           *
         from savepoint_backup
         where job_config_id = #{jobConfigId} and id=#{savepointId}
     </select>
 
-    <select id="selectByLimt10" parameterType="java.lang.Long" resultType="com.alinesno.infra.data.flink.entity.SavepointBackupEntity">
+    <select id="selectByLimt10" parameterType="java.lang.Long" resultType="com.alinesno.infra.data.stream.entity.SavepointBackupEntity">
         select
           *
         from savepoint_backup

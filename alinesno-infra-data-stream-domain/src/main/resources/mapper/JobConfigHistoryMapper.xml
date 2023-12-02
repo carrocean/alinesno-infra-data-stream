@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alinesno.infra.data.flink.mapper.JobConfigHistoryMapper">
+<mapper namespace="com.alinesno.infra.data.stream.mapper.JobConfigHistoryMapper">
 
-    <resultMap type="com.alinesno.infra.data.flink.entity.JobConfigHistoryEntity" id="JobConfigHistoryResult">
+    <resultMap type="com.alinesno.infra.data.stream.entity.JobConfigHistoryEntity" id="JobConfigHistoryResult">
                     <result property="jobConfigId" column="job_config_id"/>
                     <result property="jobName" column="job_name"/>
                     <result property="jobDesc" column="job_desc"/>
@@ -18,7 +18,7 @@
                     <result property="jobType" column="job_type"/>
     </resultMap>
 
-    <select id="selectByJobConfigId" resultType="com.alinesno.infra.data.flink.entity.JobConfigHistoryEntity">
+    <select id="selectByJobConfigId" resultType="com.alinesno.infra.data.stream.entity.JobConfigHistoryEntity">
         select
           *
         from job_config_history
