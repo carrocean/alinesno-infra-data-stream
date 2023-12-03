@@ -271,6 +271,8 @@ function submitForm() {
     proxy.$refs["systemConfigRef"].validate(valid => {
         if ( valid ) {
           if ( form.value.id != null ) {
+            const currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            form.value.updateTime = currentTime ;
             updateSystemConfig(form.value).then(response => {
               proxy.$modal.msgSuccess("修改成功");
               open.value = false;
