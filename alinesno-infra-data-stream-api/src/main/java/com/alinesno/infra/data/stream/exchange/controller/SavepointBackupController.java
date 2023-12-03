@@ -3,6 +3,7 @@ package com.alinesno.infra.data.stream.exchange.controller;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.web.adapter.plugins.TranslateCode;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.data.stream.entity.SavepointBackupEntity;
 import com.alinesno.infra.data.stream.service.ISavepointBackupService;
@@ -46,6 +47,7 @@ public class SavepointBackupController extends BaseController<SavepointBackupEnt
      * @param page DatatablesPageBean对象。
      * @return 包含DataTables数据的TableDataInfo对象。
      */
+    @TranslateCode(plugin = "SavepointBackupPlugin")
     @ResponseBody
     @PostMapping("/datatables")
     public TableDataInfo datatables(HttpServletRequest request, Model model, DatatablesPageBean page) {
