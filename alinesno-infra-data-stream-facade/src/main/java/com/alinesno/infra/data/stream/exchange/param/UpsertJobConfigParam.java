@@ -101,6 +101,11 @@ public class UpsertJobConfigParam {
 
   private Long creator;
 
+  /**
+   * 更新版本号 用于乐观锁
+   */
+  private Long version;
+
 
 
   public static JobConfigDTO toDTO(UpsertJobConfigParam upsertJobConfigParam) {
@@ -298,5 +303,13 @@ public class UpsertJobConfigParam {
 
   public void setCreator(Long creator) {
     this.creator = creator;
+  }
+
+  public Long getVersion() {
+    return version;
+  }
+
+  public void setVersion(Long version) {
+    this.version = version;
   }
 }

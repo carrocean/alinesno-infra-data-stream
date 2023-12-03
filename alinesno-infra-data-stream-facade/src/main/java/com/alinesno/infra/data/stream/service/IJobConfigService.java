@@ -62,7 +62,7 @@ public interface IJobConfigService extends IBaseService<JobConfigEntity> {
      * @date 2021/2/28
      * @time 17:57
      */
-    void updateStatusByStart(Long id, Long operatorId, Long jobRunLogId, Long version);
+    void updateStatusByStart(Long id, Long operatorId, Long jobRunLogId, Long oldVersion);
 
 
     /**
@@ -109,7 +109,6 @@ public interface IJobConfigService extends IBaseService<JobConfigEntity> {
      * 恢复删除任务
      *
      * @param id
-     * @param operatorId
      * @author wxj
      * @date 2021年12月28日 下午2:07:31
      * @version V1.0

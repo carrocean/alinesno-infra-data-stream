@@ -77,6 +77,7 @@ public class JobConfigServiceImpl extends IBaseServiceImpl<JobConfigEntity, JobC
 
         JobConfigEntity jobConfig = JobConfigDTO.toEntity(jobConfigDTO);
         jobConfig.setAddTime( new Date());
+        jobConfig.setVersion(0l);
         this.saveOrUpdate(jobConfig);
         this.insertJobConfigHistory(jobConfig.getId());
         Map<String, Long> dataMap = new HashMap<String, Long>();
@@ -168,8 +169,8 @@ public class JobConfigServiceImpl extends IBaseServiceImpl<JobConfigEntity, JobC
     }
 
     @Override
-    public void updateStatusByStart(Long id, Long operatorId , Long jobRunLogId, Long version) {
-        int num = jobConfigMapper.updateStatusByStart(id, operatorId, JobConfigStatus.STARTING.getCode(), jobRunLogId, version);
+    public void updateStatusByStart(Long id, Long operatorId , Long jobRunLogId, Long oldVersion) {
+        int num = jobConfigMapper.updateStatusByStart(id, operatorId, JobConfigStatus.STARTING.getCode(), jobRunLogId, oldVersion);
         if (num < 1) {
             throw new BizException("启动状态更新失败");
         }

@@ -231,9 +231,17 @@ public class JobConfigController extends BaseController<JobConfigEntity, IJobCon
             }
         }
 
+        CheckPointParam checkPointParam = null ;
         if (StringUtils.isNotEmpty(upsertJobConfigParam.getFlinkCheckpointConfig())) {
-            CheckPointParam checkPointParam = CliConfigUtil
+            try {
+                checkPointParam = CliConfigUtil
                     .checkFlinkCheckPoint(upsertJobConfigParam.getFlinkCheckpointConfig());
+
+            } catch (BizException e){
+                return AjaxResult.error( e.getMessage() );
+            }
+
+
             ResponseBean checkPointResult = this.checkPointParam(checkPointParam);
             if (checkPointResult != null && checkPointResult.getCode() != 200 ) {
                 return AjaxResult.error(checkPointResult.getMessage());
@@ -444,6 +452,8 @@ public class JobConfigController extends BaseController<JobConfigEntity, IJobCon
         upsertJobConfigParam.setOperatorId(operatorId);
 
         JobConfigDTO jobConfigNew = UpsertJobConfigParam.toDTO(upsertJobConfigParam);
+
+        jobConfigNew.setVersion(jobConfigDTO.getVersion() + 1 );
 
         ResponseBean updateResult = jobConfigAO.updateJobConfigById(jobConfigNew);
         if ( updateResult.getCode() != 200 ) {

@@ -96,7 +96,10 @@ public class JobStandaloneServerAOImpl implements JobServerAO {
     //4、变更任务状态（变更为：启动中） 有乐观锁 防止重复提交
     jobConfigService.updateStatusByStart(jobConfigDTO.getId(), Long.valueOf(operatorId), jobRunLogId, jobConfigDTO.getVersion());
 
-    String savepointPath = savepointBackupService.getSavepointPathById(id, savepointId);
+    String savepointPath = null ;
+    if ( savepointId != null ) {
+        savepointPath = savepointBackupService.getSavepointPathById(id, savepointId);
+    }
 
     //异步提交任务
     jobBaseServiceAO.aSyncExecJob(jobRunParamDTO, jobConfigDTO, jobRunLogId, savepointPath);

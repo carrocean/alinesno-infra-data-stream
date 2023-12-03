@@ -116,9 +116,18 @@
           <el-tag v-else type="info" size="mini">{{ getStatusDesc(scope.row.status) }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="日志" width="110" >
+      <el-table-column label="日志" width="140" >
         <template  #default="scope">
-          <router-link v-if="scope.row.lastRunLogId!==null" :to="{name:'ViewTaskLogDetail', params:{flag:'tasklist', context:queryContent(), data:{id:scope.row.lastRunLogId}}}" style="margin-right: 5px"  >
+          <router-link :to="{name:'JobRunLog', params:{flag:'tasklist', context:queryContent(), jobId:scope.row.jobId, jobConfigId:scope.row.id}}" style="margin-right: 5px"  >
+            <el-link :underline="false">
+              <el-button
+                  type="text"
+                  icon="el-icon-chat-line-square"
+                  size="mini">历史
+              </el-button>
+            </el-link>
+          </router-link>
+          <router-link v-if="scope.row.lastRunLogId!==null" :to="{name:'ViewTaskLogDetail', params:{flag:'tasklist', context:queryContent(), data:scope.row.lastRunLogId}}" style="margin-right: 5px"  >
             <el-link :underline="false">
               <el-button
                 type="text"
@@ -127,15 +136,7 @@
               </el-button>
             </el-link>
           </router-link>
-          <router-link :to="{name:'JobRunLog', params:{flag:'tasklist', context:queryContent(), jobId:scope.row.jobId, jobConfigId:scope.row.id}}" style="margin-right: 5px"  >
-            <el-link :underline="false">
-              <el-button
-                type="text"
-                icon="el-icon-chat-line-square"
-                size="mini">历史
-              </el-button>
-            </el-link>
-          </router-link>
+
         </template>
       </el-table-column>
       <el-table-column prop="savepoint" label="保存状态" width="150" >
@@ -170,7 +171,7 @@
       </el-table-column>
       <el-table-column label="操作" width="275" align="center" class-name="small-padding fixed-width">
         <template  #default="scope">
-          <el-link v-if="scope.row.isOpen===1&&scope.row.status!=='RUN'"  @click.native="startTask(scope.row)" style="margin-right: 2px" :underline="false">
+          <el-link v-if="scope.row.isOpen===1&&scope.row.status!=='RUN'"  @click.native="startJobTask(scope.row)" style="margin-right: 2px" :underline="false">
             <el-button
               type="text"
               icon="el-icon-video-play"
@@ -178,7 +179,7 @@
             </el-button>
           </el-link>
 
-          <el-link v-if="scope.row.isOpen===1&&scope.row.status==='RUN'"  @click.native="stopTask(scope.row)" style="margin-right: 5px" :underline="false">
+          <el-link v-if="scope.row.isOpen===1&&scope.row.status==='RUN'"  @click.native="stopJobTask(scope.row)" style="margin-right: 5px" :underline="false">
             <el-button
               type="text"
               icon="el-icon-switch-button"

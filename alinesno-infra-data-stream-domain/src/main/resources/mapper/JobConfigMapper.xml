@@ -135,12 +135,12 @@
         <set>
             version = version + 1,
             last_update_operator_id = #{operatorId},
-            status = #{status,jdbcType=BIT},
-            last_run_log_id = #{jobRunLogId,jdbcType=VARCHAR}
+            status = #{status},
+            last_run_log_id = #{jobRunLogId}
         </set>
         where id = #{id}
           and has_delete=0
-          and version=#{oldVersion,jdbcType=INTEGER}
+          and version=#{oldVersion}
     </update>
 
     <select id="findJobConfig" parameterType="com.alinesno.infra.data.stream.exchange.param.JobConfigParam"
