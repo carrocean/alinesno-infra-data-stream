@@ -25,7 +25,7 @@
         <module>alinesno-infra-data-stream-facade</module>  <!-- 接口和引用 -->
         <module>alinesno-infra-data-stream-domain</module>  <!-- 领域服务 -->
         <module>alinesno-infra-data-stream-adapter</module> <!-- 适配层 -->
-        <module>alinesno-infra-data-stream-api</module>     <!-- 接口服务 -->
+        <module>alinesno-infra-data-stream-gateway</module>     <!-- 接口服务 -->
         <module>alinesno-infra-data-stream-client</module>  <!-- 对外引用 -->
         <module>alinesno-infra-data-stream-boot</module>    <!-- 启动服务 -->
         <module>alinesno-infra-data-stream-common</module>         <!-- 公共服务 -->
