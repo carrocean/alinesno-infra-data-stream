@@ -59,19 +59,6 @@ export const constantRoutes = [
         name: '/index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       },
-
-      // {
-      //   path: '/dashboard/smartService',
-      //   component: () => import('@/views/smartService'),
-      //   name: '/dashboard/smartService',
-      //   meta: { title: '智能客服', icon: 'dashboard', affix: true }
-      // },
-      // {
-      //   path: '/dashboard/serviceList',
-      //   component: () => import('@/views/serviceList'),
-      //   name: '/dashboard/serviceList',
-      //   meta: { title: '服务列表', icon: 'dashboard', affix: true }
-      // },
       {
         path: '/dashboard/suportTechnique',
         component: () => import('@/views/suportTechnique'),
@@ -105,11 +92,81 @@ export const constantRoutes = [
 
 // 动态路由，基于用户权限动态去加载
 export const dynamicRoutes = [
-]
+  // View Task Log Detail
+//  {
+//    path: '/flink/jobRunLog/logdetail',
+//    component: Layout,
+//    hidden: false, // 根据需要调整
+//    redirect: 'noredirect',
+//    children: [
+//      {
+//        path: ':flag?/:context?/:data?',
+//        component: () => import('@/views/flink/JobRunLogDetail'),
+//        name: 'ViewTaskLogDetail',
+//        meta: { title: '查看日志详情', icon: 'peoples' }
+//      }
+//    ]
+//  },
+//  // Create SQL Streaming Task
+//  {
+//    path: '/flink/jobManage/sqltask',
+//    component: Layout,
+//    hidden: false, // 根据需要调整
+//    redirect: 'noredirect',
+//    children: [
+//      {
+//        path: 'create',
+//        component: () => import('@/views/flink/CreateSqlStreamingTask'),
+//        name: 'CreateSqlStreamingTask',
+//        meta: { title: '创建SQL流任务', icon: 'peoples' }
+//      },
+//      {
+//        path: 'update/:flag?/:context?/:data?',
+//        component: () => import('@/views/flink/UpdateSqlStreamingTask'),
+//        name: 'UpdateSqlStreamingTask',
+//        meta: { title: '编辑SQL流任务', icon: 'peoples' }
+//      },
+//      {
+//        path: 'view/:flag?/:context?/:data?',
+//        component: () => import('@/views/flink/ViewSqlStreamingTask'),
+//        name: 'ViewSqlStreamingTask',
+//        meta: { title: '查看SQL流任务', icon: 'peoples' }
+//      }
+//    ]
+//  },
+//  // JAR Task Management
+//  {
+//    path: '/flink/jobManage/jartask',
+//    component: Layout,
+//    hidden: false, // 根据需要调整
+//    redirect: 'noredirect',
+//    children: [
+//      {
+//        path: 'create',
+//        component: () => import('@/views/flink/CreateJarTask'),
+//        name: 'CreateJarTask',
+//        meta: { title: '创建JAR任务', icon: 'peoples' }
+//      },
+//      {
+//        path: 'update/:flag?/:context?/:data?',
+//        component: () => import('@/views/flink/UpdateJarTask'),
+//        name: 'UpdateJarTask',
+//        meta: { title: '编辑JAR批任务', icon: 'peoples' }
+//      },
+//      {
+//        path: 'view/:flag?/:context?/:data?',
+//        component: () => import('@/views/flink/ViewJarTask'),
+//        name: 'ViewJarTask',
+//        meta: { title: '查看JAR批任务', icon: 'peoples' }
+//      }
+//    ]
+//  }
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: constantRoutes,
+  // routes: constantRoutes,
+  routes: [...constantRoutes, ...dynamicRoutes], // 合并常量路由和动态路由
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
