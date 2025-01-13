@@ -247,13 +247,13 @@ const data = reactive({
   ParamsTem: {
     pageNum : 1,
     pageSize: 1000,
-    hasStatus : 0,
-    modelName: null,
+    // hasStatus : 0,
+    // modelName: null,
   },
 
   ParamsConfigTem:{
-    hasStatus :  Condition.eq(),
-    modelName: Condition.like()
+    // hasStatus :  Condition.eq(),
+    // modelName: Condition.like()
   },
 
 });
