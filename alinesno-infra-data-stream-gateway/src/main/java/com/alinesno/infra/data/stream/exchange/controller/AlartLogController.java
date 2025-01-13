@@ -10,6 +10,7 @@ import com.alinesno.infra.data.stream.exchange.dto.AlartLogDTO;
 import com.alinesno.infra.data.stream.service.IAlartLogService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,14 +32,12 @@ import java.util.List;
  * @version 1.0.0
  * @author luoxiaodong
  */
+@Slf4j
 @Api(tags = "AlartLog")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
 @RequestMapping("/api/infra/data/flink/alartLog")
 public class AlartLogController extends BaseController<AlartLogEntity, IAlartLogService> {
-
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(AlartLogController.class);
 
     @Autowired
     private IAlartLogService service;
